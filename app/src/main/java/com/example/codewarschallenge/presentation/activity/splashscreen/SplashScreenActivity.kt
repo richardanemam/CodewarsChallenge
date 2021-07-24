@@ -1,4 +1,4 @@
-package com.example.codewarschallenge.presentation.splashscreen
+package com.example.codewarschallenge.presentation.activity.splashscreen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
