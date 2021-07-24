@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">CodewarsChallenge</string>
+
+    <!-- SPLASH SCREEN -->
+    <string name="splash_app_name">Codewars\nChallenge</string>
 </resources>
