@@ -7,6 +7,6 @@ import retrofit2.http.Path
 
 interface CodewarsApi {
 
-    @GET("user")
+    @GET("{user}")
     suspend fun getUser(@Path("user") user: String): Response<User>
 }
