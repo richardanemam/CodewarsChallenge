@@ -3,4 +3,9 @@
 
     <!-- SPLASH SCREEN -->
     <string name="splash_app_name">Codewars\nChallenge</string>
+
+    <!-- SEARCH SCREEN -->
+    <string name="search_toolbar_title">Members</string>
+    <string name="search_search_view_hint">search user by name</string>
+    <string name="search_screen_title">Search</string>
 </resources>

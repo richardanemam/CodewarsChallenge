@@ -7,5 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- GREY -->
     <color name="grey_505050">#505050</color>
+    <color name="grey_2B2C2F">#2B2C2F</color>
+    <color name="grey_CCCCCC">#CCCCCC</color>
+
+    <!-- Black -->
+    <color name="black_1D1E20">#1D1E20</color>
+    
+    <!-- GREEN -->
+    <color name="green_11C76F">#11C76F</color>
 </resources>
