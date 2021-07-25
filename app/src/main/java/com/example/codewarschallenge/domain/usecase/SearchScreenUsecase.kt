@@ -8,4 +8,6 @@ class SearchScreenUsecase(val repository: CodewarsRepository) {
     suspend fun getUser(username: String): User? {
         return repository.getUser(user = username).body()
     }
+
+
 }

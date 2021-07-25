@@ -4,23 +4,37 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ActivitySearchScreenBinding
+import com.example.codewarschallenge.domain.model.User
+import com.example.codewarschallenge.presentation.adapter.UsersInfoAdapter
+import com.example.codewarschallenge.presentation.states.UserInfoState
 
 class SearchScreenActivity: AppCompatActivity() {
 
     private val binding by lazy { ActivitySearchScreenBinding.inflate(layoutInflater) }
+    private val viewModel by lazy { ViewModelProvider(this)[SearchScreenViewModel::class.java] }
+    private val users = mutableListOf<User>()
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         setContentView(binding.root)
 
         setUpViews()
+        subscribeUI()
     }
 
     private fun setUpViews() {
         setUpToolbarsBackButton()
+        setUpSearchView()
+    }
+
+    private fun subscribeUI() {
+        subscribeUser()
     }
 
     private fun setUpToolbarsBackButton() {
@@ -30,6 +44,37 @@ class SearchScreenActivity: AppCompatActivity() {
             setTitle(R.string.search_toolbar_title)
             setDisplayHomeAsUpEnabled(true)
         }
+    }
+
+    private fun setUpUserRecyclerView(users: List<User>) {
+        binding.rvSearchScreenRecentSearches.adapter = UsersInfoAdapter(users)
+        binding.rvSearchScreenRecentSearches.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun subscribeUser() {
+        viewModel.onUserInfoState.observe(this, {
+            when(it) {
+                is UserInfoState.UserInfoAvailable -> {
+                    users.add(it.user)
+                    setUpUserRecyclerView(users)
+                }
+            }
+        })
+    }
+
+    private fun setUpSearchView() {
+        binding.svSearchScreenSearchMember.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { viewModel.fetchUserByName(it) }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                //Do nothing
+                return false
+            }
+
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
