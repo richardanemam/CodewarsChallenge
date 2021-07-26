@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_order_by_rank"
+        android:icon="@drawable/ic_baseline_360_24"
+        android:title="@string/challenges_menu_complete"/>
+    <item
+        android:id="@+id/menu_order_by_search"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/challenges_menu_authored"/>
+</menu>

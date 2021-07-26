@@ -67,7 +67,6 @@ class SearchScreenActivity: AppCompatActivity() {
                     setUpUserRecyclerView(it.user)
                 }
                 UserInfoState.UserInfoUnavailable -> {
-                    binding.tvSearchScreenSearchForNewUsers.visibility = View.VISIBLE
                     Toast.makeText(this, getString(R.string.search_screen_user_not_found_message), Toast.LENGTH_LONG).show()
                 }
             }

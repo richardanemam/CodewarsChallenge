@@ -19,5 +19,9 @@
     <string name="search_screen_item_user_language_score_title">Best Language Score</string>
     <string name="search_screen_item_show_user_challenges">show challenges</string>
 
+    <!-- CHALLENGES SCREEN -->
+    <string name="challenges_menu_complete">complete</string>
+    <string name="challenges_menu_authored">authored</string>
+
 
 </resources>
