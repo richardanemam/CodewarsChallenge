@@ -11,19 +11,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ActivitySearchScreenBinding
 import com.example.codewarschallenge.domain.model.User
+import com.example.codewarschallenge.mainapplication.MainApplication
 import com.example.codewarschallenge.presentation.adapter.UsersInfoAdapter
 import com.example.codewarschallenge.presentation.states.UserInfoState
+import javax.inject.Inject
 
 class SearchScreenActivity: AppCompatActivity() {
 
     private val binding by lazy { ActivitySearchScreenBinding.inflate(layoutInflater) }
-    private val viewModel by lazy { ViewModelProvider(this)[SearchScreenViewModel::class.java] }
+    //private val viewModel by lazy { ViewModelProvider(this)[SearchScreenViewModel::class.java] }
+    @Inject
+    lateinit var viewModel: SearchScreenViewModel
     private val users = mutableListOf<User>()
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         setContentView(binding.root)
 
+        (application as MainApplication).getApplicationComponent().injection(this)
         setUpViews()
         subscribeUI()
     }

@@ -7,8 +7,10 @@ import kotlinx.coroutines.withContext
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class CodewarsRepository {
+class CodewarsRepository @Inject constructor() {
+
     companion object {
         private const val BASE_USERS_URL = "https://www.codewars.com/api/v1/users/"
     }

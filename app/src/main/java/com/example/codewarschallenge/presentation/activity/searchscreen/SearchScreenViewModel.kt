@@ -4,21 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.codewarschallenge.data.repository.CodewarsRepository
-import com.example.codewarschallenge.domain.usecase.SearchScreenUsecase
+import com.example.codewarschallenge.domain.usecase.SearchScreenUseCase
 import com.example.codewarschallenge.presentation.states.UserInfoState
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchScreenViewModel: ViewModel() {
-    val repository = CodewarsRepository()
-    val usecase = SearchScreenUsecase(repository)
+class SearchScreenViewModel @Inject constructor(private val useCase: SearchScreenUseCase): ViewModel() {
+
 
     private val userInfoState: MutableLiveData<UserInfoState> = MutableLiveData()
     val onUserInfoState: LiveData<UserInfoState> = userInfoState
 
     fun fetchUserByName(name: String) {
         viewModelScope.launch {
-            val user = usecase.getUser(name)
+            val user = useCase.getUser(name)
             userInfoState.postValue(user?.let { UserInfoState.UserInfoAvailable(it) })
         }
     }
