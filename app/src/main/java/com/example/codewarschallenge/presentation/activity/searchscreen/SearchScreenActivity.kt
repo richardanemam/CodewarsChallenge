@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,7 @@ import com.example.codewarschallenge.databinding.ActivitySearchScreenBinding
 import com.example.codewarschallenge.domain.model.User
 import com.example.codewarschallenge.mainapplication.MainApplication
 import com.example.codewarschallenge.presentation.adapter.UsersInfoAdapter
+import com.example.codewarschallenge.presentation.states.ProgressbarState
 import com.example.codewarschallenge.presentation.states.UserInfoState
 import javax.inject.Inject
 
@@ -40,6 +42,7 @@ class SearchScreenActivity: AppCompatActivity() {
 
     private fun subscribeUI() {
         subscribeUser()
+        subscribeProgressbar()
     }
 
     private fun setUpToolbarsBackButton() {
@@ -63,6 +66,15 @@ class SearchScreenActivity: AppCompatActivity() {
                     users.add(it.user)
                     setUpUserRecyclerView(users)
                 }
+            }
+        })
+    }
+
+    private fun subscribeProgressbar() {
+        viewModel.onProgressbarState.observe(this, {
+            when(it) {
+                ProgressbarState.Show -> binding.pbSearchScreen.visibility = View.VISIBLE
+                ProgressbarState.Hide -> binding.pbSearchScreen.visibility = View.GONE
             }
         })
     }
