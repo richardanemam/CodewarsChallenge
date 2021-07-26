@@ -11,10 +11,13 @@
     <string name="search_screen_recent_searches">Recent searches</string>
     <string name="search_screen_menu_order_by_rank">order by rank</string>
     <string name="search_screen_menu_order_by_search">order by search</string>
+    <string name="search_screen_search_for_new_users">search for new users on codewars</string>
+    <string name="search_screen_user_not_found_message">User not found, please try again!</string>
     <string name="search_screen_item_user_name_title">Name</string>
     <string name="search_screen_item_user_rank_title">Leaderboard Position</string>
     <string name="search_screen_item_user_best_language_title">Best Language</string>
     <string name="search_screen_item_user_language_score_title">Best Language Score</string>
     <string name="search_screen_item_show_user_challenges">show challenges</string>
+
 
 </resources>

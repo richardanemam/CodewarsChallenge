@@ -9,6 +9,12 @@ class SearchScreenUseCase @Inject constructor(
 ) {
 
     suspend fun getUser(username: String): User? {
-        return repository.getUser(user = username).body()
+        val user = repository.getUser(username)
+
+        if(user.isSuccessful) {
+            return user.body()
+        }
+
+        return null
     }
 }

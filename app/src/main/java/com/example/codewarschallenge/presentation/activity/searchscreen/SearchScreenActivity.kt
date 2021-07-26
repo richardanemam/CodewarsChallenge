@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +22,6 @@ import javax.inject.Inject
 class SearchScreenActivity: AppCompatActivity() {
 
     private val binding by lazy { ActivitySearchScreenBinding.inflate(layoutInflater) }
-    private val users = mutableListOf<User>()
 
     @Inject
     lateinit var viewModel: SearchScreenViewModel
@@ -63,8 +63,12 @@ class SearchScreenActivity: AppCompatActivity() {
         viewModel.onUserInfoState.observe(this, {
             when(it) {
                 is UserInfoState.UserInfoAvailable -> {
-                    users.add(it.user)
-                    setUpUserRecyclerView(users)
+                    binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
+                    setUpUserRecyclerView(it.user)
+                }
+                UserInfoState.UserInfoUnavailable -> {
+                    binding.tvSearchScreenSearchForNewUsers.visibility = View.VISIBLE
+                    Toast.makeText(this, getString(R.string.search_screen_user_not_found_message), Toast.LENGTH_LONG).show()
                 }
             }
         })
@@ -73,8 +77,13 @@ class SearchScreenActivity: AppCompatActivity() {
     private fun subscribeProgressbar() {
         viewModel.onProgressbarState.observe(this, {
             when(it) {
-                ProgressbarState.Show -> binding.pbSearchScreen.visibility = View.VISIBLE
-                ProgressbarState.Hide -> binding.pbSearchScreen.visibility = View.GONE
+                ProgressbarState.Show -> {
+                    binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
+                    binding.pbSearchScreen.visibility = View.VISIBLE
+                }
+                ProgressbarState.Hide -> {
+                    binding.pbSearchScreen.visibility = View.GONE
+                }
             }
         })
     }

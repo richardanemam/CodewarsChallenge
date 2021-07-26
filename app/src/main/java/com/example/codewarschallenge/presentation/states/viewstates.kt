@@ -12,6 +12,6 @@ sealed class ProgressbarState {
 }
 
 sealed class UserInfoState {
-    data class UserInfoAvailable(val user: User) : UserInfoState()
+    data class UserInfoAvailable(val user: ArrayList<User>) : UserInfoState()
     object UserInfoUnavailable: UserInfoState()
 }
