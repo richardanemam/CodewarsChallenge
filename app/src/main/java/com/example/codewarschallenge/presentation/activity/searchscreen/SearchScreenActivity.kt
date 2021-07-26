@@ -19,10 +19,10 @@ import javax.inject.Inject
 class SearchScreenActivity: AppCompatActivity() {
 
     private val binding by lazy { ActivitySearchScreenBinding.inflate(layoutInflater) }
-    //private val viewModel by lazy { ViewModelProvider(this)[SearchScreenViewModel::class.java] }
+    private val users = mutableListOf<User>()
+
     @Inject
     lateinit var viewModel: SearchScreenViewModel
-    private val users = mutableListOf<User>()
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
