@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codewarschallenge.databinding.ItemSearchedUsersBinding
+import com.example.codewarschallenge.domain.helper.LanguagesMapHelper
+import com.example.codewarschallenge.domain.model.Languages
 import com.example.codewarschallenge.domain.model.User
 
 class UsersInfoAdapter(val users: List<User>): RecyclerView.Adapter<UsersInfoAdapter.UsersInfoViewHolder>() {
@@ -25,6 +27,16 @@ class UsersInfoAdapter(val users: List<User>): RecyclerView.Adapter<UsersInfoAda
             val user = users[absoluteAdapterPosition]
             binding.tvSearchedUsersName.text = user.name
             binding.tvSearchedUsersRank.text = user.leaderboardPosition.toString()
+            binding.tvSearchedUsersBestLanguage.text = user.ranks?.languages?.let {
+                LanguagesMapHelper.getBestLanguage(
+                    it
+                )?.languageName
+            }
+            binding.tvSearchedUsersLanguageScore.text = user.ranks?.languages?.let {
+                LanguagesMapHelper.getBestLanguage(
+                    it
+                )?.score.toString()
+            }
         }
     }
 }
