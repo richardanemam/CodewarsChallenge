@@ -17,9 +17,9 @@ class CodewarsRepository @Inject constructor(private val service: CodewarsApi) {
         }
     }
 
-    suspend fun getCompleteChallenge(user: String, page: Int = 0): Response<CompleteChallengesModel> {
+    suspend fun getCompleteChallenge(user: String): Response<CompleteChallengesModel> {
         return withContext(Dispatchers.IO) {
-            service.getCompletedChallenge(user, page)
+            service.getCompletedChallenge(user)
         }
     }
 

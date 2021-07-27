@@ -1,5 +1,6 @@
 package com.example.codewarschallenge.presentation.activity.searchscreen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -13,6 +14,7 @@ import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ActivitySearchScreenBinding
 import com.example.codewarschallenge.domain.model.UserModel
 import com.example.codewarschallenge.mainapplication.MainApplication
+import com.example.codewarschallenge.presentation.activity.challengesscreen.ChallengesActivity
 import com.example.codewarschallenge.presentation.adapter.UsersInfoAdapter
 import com.example.codewarschallenge.presentation.states.ProgressbarState
 import com.example.codewarschallenge.presentation.states.UserInfoState
@@ -89,7 +91,12 @@ class SearchScreenActivity: AppCompatActivity() {
     private fun setUpSearchView() {
         binding.svSearchScreenSearchMember.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let { viewModel.fetchUserByName(it) }
+                query?.let {
+                    viewModel.fetchUserByName(it)
+                    val intent = Intent(this@SearchScreenActivity, ChallengesActivity::class.java)
+                    intent.putExtra(ChallengesActivity.EXTRA_USER_NAME, query)
+                    startActivity(intent)
+                }
                 return false
             }
 

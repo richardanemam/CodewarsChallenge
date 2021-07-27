@@ -12,8 +12,8 @@ interface CodewarsApi {
     @GET("{user}")
     suspend fun getUser(@Path("user") user: String): Response<UserModel>
 
-    @GET("{user}/code-challenges/completed?page={page}")
-    suspend fun getCompletedChallenge(@Path("user") user: String, @Path("page") page: Int): Response<CompleteChallengesModel>
+    @GET("{user}/code-challenges/completed?page=0")
+    suspend fun getCompletedChallenge(@Path("user") user: String): Response<CompleteChallengesModel>
 
     @GET("{user}/code-challenges/authored")
     suspend fun getAuthoredChallenge(@Path("user") user: String): Response<AuthoredChallengesModel>
