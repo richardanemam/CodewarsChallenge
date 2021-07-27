@@ -3,6 +3,7 @@
 
     <!-- SPLASH SCREEN -->
     <string name="splash_app_name">Codewars\nChallenge</string>
+    <string name="splash_error_message">"Somethig went wrong, try again later"</string>
 
     <!-- SEARCH SCREEN -->
     <string name="search_toolbar_title">Members</string>
