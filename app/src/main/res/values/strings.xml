@@ -33,4 +33,13 @@
     <string name="challenges_complete_error_message">Unable to fetch complete challenges</string>
     <string name="challenges_authored_error_message">Unable to fetch authored challenges</string>
     <string name="challenges_show_challenges_details">show details</string>
+
+    <!-- CHALLENGES DETAILS SCREEN -->
+    <string name="complete_challenges_details_toolbar_title">Complete challenge details</string>
+    <string name="complete_challenges_details_id_title">Id</string>
+    <string name="complete_challenges_details_name_title">Name</string>
+    <string name="complete_challenges_details_slug_title">Slug</string>
+    <string name="complete_challenges_details_error_message">Slug</string>
+
+
 </resources>
