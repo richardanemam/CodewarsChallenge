@@ -11,7 +11,8 @@ import com.example.codewarschallenge.presentation.states.UserInfoState
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SearchScreenViewModel @Inject constructor(private val useCase: SearchScreenUseCase): ViewModel() {
+class SearchScreenViewModel @Inject constructor(private val useCase: SearchScreenUseCase) :
+    ViewModel() {
 
     private val userInfoState: MutableLiveData<UserInfoState> = MutableLiveData()
     val onUserInfoState: LiveData<UserInfoState> = userInfoState
@@ -20,6 +21,7 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
     val onProgressbarState: LiveData<ProgressbarState> = progressBarState
 
     private val users = ArrayList<UserModel>()
+    private val usersOrderedByRank = ArrayList<UserModel>()
 
     fun fetchUserByName(name: String) {
         viewModelScope.launch {
@@ -33,19 +35,26 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
 
     private fun handleUsersAvailability(user: UserModel?) {
         if (user != null) {
-            validateUserList(user)
+            orderUserListBySearch(user)
             userInfoState.postValue(UserInfoState.OnUserInfoAvailable(users))
         } else {
             userInfoState.postValue(UserInfoState.OnUserInfoUnavailable)
         }
     }
 
-    private fun validateUserList(user: UserModel) {
-        if(users.size < 5) {
-           users.add(user)
+    private fun orderUserListBySearch(user: UserModel) {
+        if (users.size < 5) {
+            users.add(0, user)
         } else {
-            users.removeFirst()
-            users.add(user)
+            users.removeLast()
+            users.add(0, user)
         }
+    }
+
+    fun orderUserListByRank(): ArrayList<UserModel> {
+        if(users.isNotEmpty()) {
+            usersOrderedByRank.addAll(users.sortedBy { it.leaderboardPosition })
+        }
+        return usersOrderedByRank
     }
 }

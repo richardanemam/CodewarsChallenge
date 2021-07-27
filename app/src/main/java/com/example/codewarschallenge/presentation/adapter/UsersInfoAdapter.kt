@@ -7,7 +7,9 @@ import com.example.codewarschallenge.databinding.ItemSearchedUsersBinding
 import com.example.codewarschallenge.domain.helper.LanguagesMapHelper
 import com.example.codewarschallenge.domain.model.UserModel
 
-class UsersInfoAdapter(val users: List<UserModel>): RecyclerView.Adapter<UsersInfoAdapter.UsersInfoViewHolder>() {
+class UsersInfoAdapter: RecyclerView.Adapter<UsersInfoAdapter.UsersInfoViewHolder>() {
+
+    private val users = mutableListOf<UserModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersInfoViewHolder {
         val binding = ItemSearchedUsersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,6 +21,12 @@ class UsersInfoAdapter(val users: List<UserModel>): RecyclerView.Adapter<UsersIn
     }
 
     override fun getItemCount() = users.size
+
+    fun updateUsers(orderedUsers: List<UserModel>) {
+        users.clear()
+        users.addAll(orderedUsers)
+        notifyDataSetChanged()
+    }
 
     inner class UsersInfoViewHolder(private val binding: ItemSearchedUsersBinding): RecyclerView.ViewHolder(binding.root) {
 

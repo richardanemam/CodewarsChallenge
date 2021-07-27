@@ -23,6 +23,7 @@ import javax.inject.Inject
 class SearchScreenActivity: AppCompatActivity() {
 
     private val binding by lazy { ActivitySearchScreenBinding.inflate(layoutInflater) }
+    private val adapter by lazy { UsersInfoAdapter() }
 
     @Inject
     lateinit var viewModel: SearchScreenViewModel
@@ -39,6 +40,7 @@ class SearchScreenActivity: AppCompatActivity() {
     private fun setUpViews() {
         setUpToolbarsBackButton()
         setUpSearchView()
+        setUpUserRecyclerView()
     }
 
     private fun subscribeUI() {
@@ -55,8 +57,8 @@ class SearchScreenActivity: AppCompatActivity() {
         }
     }
 
-    private fun setUpUserRecyclerView(users: List<UserModel>) {
-        binding.rvSearchScreenRecentSearches.adapter = UsersInfoAdapter(users)
+    private fun setUpUserRecyclerView() {
+        binding.rvSearchScreenRecentSearches.adapter = adapter
         binding.rvSearchScreenRecentSearches.layoutManager = LinearLayoutManager(this)
     }
 
@@ -65,7 +67,7 @@ class SearchScreenActivity: AppCompatActivity() {
             when(it) {
                 is UserInfoState.OnUserInfoAvailable -> {
                     binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
-                    setUpUserRecyclerView(it.user)
+                    adapter.updateUsers(it.user)
                 }
                 UserInfoState.OnUserInfoUnavailable -> {
                     Toast.makeText(this, getString(R.string.search_screen_user_not_found_message), Toast.LENGTH_LONG).show()
@@ -117,11 +119,7 @@ class SearchScreenActivity: AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.menu_order_by_rank -> {
-                //TODO order by rank
-                true
-            }
-            R.id.menu_order_by_search -> {
-                //TODO order by search
+                adapter.updateUsers(viewModel.orderUserListByRank())
                 true
             }
             else -> super.onOptionsItemSelected(item)

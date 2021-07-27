@@ -4,9 +4,5 @@
     <item
         android:id="@+id/menu_order_by_rank"
         android:title="@string/search_screen_menu_order_by_rank"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/menu_order_by_search"
-        android:title="@string/search_screen_menu_order_by_search"
-        app:showAsAction="never"/>
+        app:showAsAction="ifRoom"/>
 </menu>
