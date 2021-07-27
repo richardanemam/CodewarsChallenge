@@ -49,6 +49,6 @@
     <string name="authored_challenges_details_rank_name_title">Rank name</string>
     <string name="authored_challenges_details_tags_title">Tags</string>
     <string name="authored_challenges_details_languages_title">Languages</string>
-    <string name="authored_challenges_details_error_message">Unable to fetch complete challenge details</string>
+    <string name="authored_challenges_details_error_message">Unable to fetch authored challenge details</string>
 
 </resources>

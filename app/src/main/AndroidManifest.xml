@@ -35,5 +35,9 @@
         <activity android:name=".presentation.activity.completechallengedetailsscreen.CompleteChallengeDetailsActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
+
+        <activity android:name=".presentation.activity.authoredchallengedetailsactivity.AuthoredChallengeDetailsActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
     </application>
 </manifest>
