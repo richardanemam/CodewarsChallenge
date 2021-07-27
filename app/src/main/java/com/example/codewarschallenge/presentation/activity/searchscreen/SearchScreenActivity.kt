@@ -8,11 +8,10 @@ import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ActivitySearchScreenBinding
-import com.example.codewarschallenge.domain.model.User
+import com.example.codewarschallenge.domain.model.UserModel
 import com.example.codewarschallenge.mainapplication.MainApplication
 import com.example.codewarschallenge.presentation.adapter.UsersInfoAdapter
 import com.example.codewarschallenge.presentation.states.ProgressbarState
@@ -54,7 +53,7 @@ class SearchScreenActivity: AppCompatActivity() {
         }
     }
 
-    private fun setUpUserRecyclerView(users: List<User>) {
+    private fun setUpUserRecyclerView(users: List<UserModel>) {
         binding.rvSearchScreenRecentSearches.adapter = UsersInfoAdapter(users)
         binding.rvSearchScreenRecentSearches.layoutManager = LinearLayoutManager(this)
     }

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.codewarschallenge.domain.model.User
+import com.example.codewarschallenge.domain.model.UserModel
 import com.example.codewarschallenge.domain.usecase.SearchScreenUseCase
 import com.example.codewarschallenge.presentation.states.ProgressbarState
 import com.example.codewarschallenge.presentation.states.UserInfoState
@@ -19,7 +19,7 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
     private val progressBarState: MutableLiveData<ProgressbarState> = MutableLiveData()
     val onProgressbarState: LiveData<ProgressbarState> = progressBarState
 
-    private val users = ArrayList<User>()
+    private val users = ArrayList<UserModel>()
 
     fun fetchUserByName(name: String) {
         viewModelScope.launch {
@@ -31,7 +31,7 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
         }
     }
 
-    private fun handleUsersAvailability(user: User?) {
+    private fun handleUsersAvailability(user: UserModel?) {
         if (user != null) {
             validateUserList(user)
             userInfoState.postValue(UserInfoState.UserInfoAvailable(users))
@@ -40,7 +40,7 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
         }
     }
 
-    private fun validateUserList(user: User) {
+    private fun validateUserList(user: UserModel) {
         if(users.size < 5) {
            users.add(user)
         } else {

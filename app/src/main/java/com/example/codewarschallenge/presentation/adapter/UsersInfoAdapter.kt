@@ -5,10 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codewarschallenge.databinding.ItemSearchedUsersBinding
 import com.example.codewarschallenge.domain.helper.LanguagesMapHelper
-import com.example.codewarschallenge.domain.model.Languages
-import com.example.codewarschallenge.domain.model.User
+import com.example.codewarschallenge.domain.model.UserModel
 
-class UsersInfoAdapter(val users: List<User>): RecyclerView.Adapter<UsersInfoAdapter.UsersInfoViewHolder>() {
+class UsersInfoAdapter(val users: List<UserModel>): RecyclerView.Adapter<UsersInfoAdapter.UsersInfoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersInfoViewHolder {
         val binding = ItemSearchedUsersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
