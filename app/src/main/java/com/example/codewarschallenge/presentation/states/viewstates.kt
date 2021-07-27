@@ -14,16 +14,21 @@ sealed class ProgressbarState {
 }
 
 sealed class UserInfoState {
-    data class UserInfoAvailable(val user: ArrayList<UserModel>) : UserInfoState()
-    object UserInfoUnavailable: UserInfoState()
+    data class OnUserInfoAvailable(val user: ArrayList<UserModel>) : UserInfoState()
+    object OnUserInfoUnavailable: UserInfoState()
 }
 
 sealed class UsersCompleteChallengeState {
-    data class UsersCompleteChallengeAvailable(val usersCompleteChallengeData: List<CompleteChallengesData>): UsersCompleteChallengeState()
-    object UsersCompleteChallengeUnavailable: UsersCompleteChallengeState()
+    data class OnUsersCompleteChallengeAvailable(val usersCompleteChallengeData: List<CompleteChallengesData>): UsersCompleteChallengeState()
+    object OnUsersCompleteChallengeUnavailable: UsersCompleteChallengeState()
 }
 
 sealed class UsersAuthoredChallengeState {
     data class UsersAuthoredChallengeAvailable(val usersAuthoredChallengeData: List<AuthoredChallengesData>): UsersAuthoredChallengeState()
     object UsersAuthoredChallengeUnavailable: UsersAuthoredChallengeState()
+}
+
+sealed class BundleState {
+    object OnBundleOk: BundleState()
+    object OnBundleNok: BundleState()
 }

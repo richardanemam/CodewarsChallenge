@@ -34,9 +34,9 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
     private fun handleUsersAvailability(user: UserModel?) {
         if (user != null) {
             validateUserList(user)
-            userInfoState.postValue(UserInfoState.UserInfoAvailable(users))
+            userInfoState.postValue(UserInfoState.OnUserInfoAvailable(users))
         } else {
-            userInfoState.postValue(UserInfoState.UserInfoUnavailable)
+            userInfoState.postValue(UserInfoState.OnUserInfoUnavailable)
         }
     }
 

@@ -27,5 +27,9 @@
         <activity android:name=".presentation.activity.searchscreen.SearchScreenActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
+
+        <activity android:name=".presentation.activity.challengesscreen.ChallengesActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
     </application>
 </manifest>

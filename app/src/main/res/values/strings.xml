@@ -28,4 +28,7 @@
     <string name="challenges_item_completed_at">Completed at:</string>
     <string name="challenges_complete_title">Complete Challenges</string>
     <string name="challenges_authored_title">Authored Challenges</string>
+    <string name="challenges_error_message">Unable to fetch challenges</string>
+    <string name="challenges_complete_error_message">Unable to fetch complete challenges</string>
+    <string name="challenges_authored_error_message">Unable to fetch authored challenges</string>
 </resources>

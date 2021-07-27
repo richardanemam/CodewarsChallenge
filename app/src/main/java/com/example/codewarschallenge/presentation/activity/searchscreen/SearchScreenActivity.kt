@@ -61,11 +61,11 @@ class SearchScreenActivity: AppCompatActivity() {
     private fun subscribeUser() {
         viewModel.onUserInfoState.observe(this, {
             when(it) {
-                is UserInfoState.UserInfoAvailable -> {
+                is UserInfoState.OnUserInfoAvailable -> {
                     binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
                     setUpUserRecyclerView(it.user)
                 }
-                UserInfoState.UserInfoUnavailable -> {
+                UserInfoState.OnUserInfoUnavailable -> {
                     Toast.makeText(this, getString(R.string.search_screen_user_not_found_message), Toast.LENGTH_LONG).show()
                 }
             }
