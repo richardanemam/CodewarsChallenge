@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codewarschallenge.databinding.ItemChallengesBinding
-import com.example.codewarschallenge.domain.model.CompleteChallengesData
+import com.example.codewarschallenge.domain.model.AuthoredChallengesData
 
-class AuthoredChallengesAdapter(private val data: List<CompleteChallengesData>): RecyclerView.Adapter<AuthoredChallengesAdapter.AuthoredChallengesViewHolder>() {
+class AuthoredChallengesAdapter(private val data: List<AuthoredChallengesData>): RecyclerView.Adapter<AuthoredChallengesAdapter.AuthoredChallengesViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,7 +25,7 @@ class AuthoredChallengesAdapter(private val data: List<CompleteChallengesData>):
     inner class AuthoredChallengesViewHolder(private val binding: ItemChallengesBinding): RecyclerView.ViewHolder(binding.root) {
         fun bindViews() {
             binding.tvItemChallengesName.text = data[absoluteAdapterPosition].name
-            binding.tvItemChallengesDesciption.text = data[absoluteAdapterPosition].completedAt
+            binding.tvItemChallengesDesciption.text = data[absoluteAdapterPosition].description
         }
     }
 }
