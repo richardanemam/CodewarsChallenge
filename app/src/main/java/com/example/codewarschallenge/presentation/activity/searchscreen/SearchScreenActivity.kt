@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ActivitySearchScreenBinding
-import com.example.codewarschallenge.domain.model.UserModel
+import com.example.codewarschallenge.domain.listener.ShowChallengesListener
 import com.example.codewarschallenge.mainapplication.MainApplication
 import com.example.codewarschallenge.presentation.activity.challengesscreen.ChallengesActivity
 import com.example.codewarschallenge.presentation.adapter.UsersInfoAdapter
@@ -20,10 +20,10 @@ import com.example.codewarschallenge.presentation.states.ProgressbarState
 import com.example.codewarschallenge.presentation.states.UserInfoState
 import javax.inject.Inject
 
-class SearchScreenActivity: AppCompatActivity() {
+class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
 
     private val binding by lazy { ActivitySearchScreenBinding.inflate(layoutInflater) }
-    private val adapter by lazy { UsersInfoAdapter() }
+    private val adapter by lazy { UsersInfoAdapter(this) }
 
     @Inject
     lateinit var viewModel: SearchScreenViewModel
@@ -124,5 +124,11 @@ class SearchScreenActivity: AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onClickShowChallenges(username: String) {
+        val intent = Intent(this@SearchScreenActivity, ChallengesActivity::class.java)
+        intent.putExtra(ChallengesActivity.EXTRA_USER_NAME, username)
+        startActivity(intent)
     }
 }

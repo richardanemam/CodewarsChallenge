@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codewarschallenge.databinding.ItemSearchedUsersBinding
 import com.example.codewarschallenge.domain.helper.LanguagesMapHelper
+import com.example.codewarschallenge.domain.listener.ShowChallengesListener
 import com.example.codewarschallenge.domain.model.UserModel
 
-class UsersInfoAdapter: RecyclerView.Adapter<UsersInfoAdapter.UsersInfoViewHolder>() {
+class UsersInfoAdapter(private val listener: ShowChallengesListener): RecyclerView.Adapter<UsersInfoAdapter.UsersInfoViewHolder>() {
 
     private val users = mutableListOf<UserModel>()
 
@@ -43,6 +44,13 @@ class UsersInfoAdapter: RecyclerView.Adapter<UsersInfoAdapter.UsersInfoViewHolde
                 LanguagesMapHelper.getBestLanguage(
                     it
                 )?.score.toString()
+            }
+            onClickShowChallenges(user)
+        }
+
+        private fun onClickShowChallenges(user: UserModel) {
+            binding.btnSearchedUsersShowChallenges.setOnClickListener {
+                user.userName?.let { username -> listener.onClickShowChallenges(username) }
             }
         }
     }
