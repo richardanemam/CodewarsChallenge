@@ -91,7 +91,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:text="@string/search_screen_search_for_new_users"
-        android:textStyle="bold"
         android:textSize="18sp"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/appbar_challenges_screen_id"
