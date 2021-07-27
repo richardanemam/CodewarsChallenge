@@ -26,4 +26,6 @@
     <string name="challenges_item_name">Challenge name:</string>
     <string name="challenges_item_description">Description:</string>
     <string name="challenges_item_completed_at">Completed at:</string>
+    <string name="challenges_complete_title">Complete Challenges</string>
+    <string name="challenges_authored_title">Authored Challenges</string>
 </resources>
