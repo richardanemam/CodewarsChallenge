@@ -34,12 +34,21 @@
     <string name="challenges_authored_error_message">Unable to fetch authored challenges</string>
     <string name="challenges_view_challenges_details">view details</string>
 
-    <!-- CHALLENGES DETAILS SCREEN -->
+    <!-- COMPLETE CHALLENGES DETAILS SCREEN -->
     <string name="complete_challenges_details_toolbar_title">Complete challenge details</string>
     <string name="complete_challenges_details_id_title">Id</string>
     <string name="complete_challenges_details_name_title">Name</string>
     <string name="complete_challenges_details_slug_title">Slug</string>
-    <string name="complete_challenges_details_error_message">Slug</string>
+    <string name="complete_challenges_details_completed_languages">Completed Languages</string>
+    <string name="complete_challenges_details_error_message">Unable to fetch complete challenge details</string>
 
+    <!-- AUTHORED CHALLENGES DETAILS SCREEN -->
+    <string name="authored_challenges_details_toolbar_title">Authored challenge details</string>
+    <string name="authored_challenges_details_description_title">Description</string>
+    <string name="authored_challenges_details_rank_title">Rank</string>
+    <string name="authored_challenges_details_rank_name_title">Rank name</string>
+    <string name="authored_challenges_details_tags_title">Tags</string>
+    <string name="authored_challenges_details_languages_title">Languages</string>
+    <string name="authored_challenges_details_error_message">Unable to fetch complete challenge details</string>
 
 </resources>
