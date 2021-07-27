@@ -1,6 +1,8 @@
 package com.example.codewarschallenge.presentation.activity.challengesscreen
 
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -10,6 +12,7 @@ import com.example.codewarschallenge.mainapplication.MainApplication
 import com.example.codewarschallenge.presentation.fragments.AuthoredChallengesFragment
 import com.example.codewarschallenge.presentation.fragments.CompleteChallengesFragment
 import com.example.codewarschallenge.presentation.states.BundleState
+import com.example.codewarschallenge.presentation.states.ProgressbarState
 import com.example.codewarschallenge.presentation.states.UsersAuthoredChallengeState
 import com.example.codewarschallenge.presentation.states.UsersCompleteChallengeState
 import javax.inject.Inject
@@ -40,6 +43,7 @@ class ChallengesActivity : AppCompatActivity() {
         subscribeBundle()
         subscribeCompleteChallenges()
         subscribeAuthoredChallenges()
+        subscribeProgressbar()
     }
 
     private fun subscribeBundle() {
@@ -81,9 +85,19 @@ class ChallengesActivity : AppCompatActivity() {
         })
     }
 
+    private fun subscribeProgressbar() {
+        viewModel.onProgressbarState.observe(this, {
+            when(it) {
+                ProgressbarState.Show -> binding.pbChallenges.visibility = View.VISIBLE
+                ProgressbarState.Hide -> binding.pbChallenges.visibility = View.GONE
+            }
+        })
+    }
+
     private fun onBundleOk() {
         setExtras()
         setUpViews()
+        viewModel.fetchCompleteChallenges(user)
     }
 
     private fun onBundleNok() {
@@ -95,6 +109,20 @@ class ChallengesActivity : AppCompatActivity() {
     }
 
     private fun setUpViews() {
+        setUpToolbar()
+        setUpBottomNavigationBar()
+    }
+
+    private fun setUpToolbar() {
+        setSupportActionBar(binding.toolbarSearchScreenId)
+        val actionBar = supportActionBar
+        actionBar?.apply {
+            setTitle(R.string.challenges_toolbar_title)
+            setDisplayHomeAsUpEnabled(true)
+        }
+    }
+
+    private fun setUpBottomNavigationBar() {
         binding.bnvChallengesMenu.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_challenges_complete -> {
@@ -106,6 +134,13 @@ class ChallengesActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun navigateTo(fragment: Fragment) {

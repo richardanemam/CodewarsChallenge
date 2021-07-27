@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.codewarschallenge.domain.usecase.ChallengeUseCase
 import com.example.codewarschallenge.presentation.activity.challengesscreen.ChallengesActivity.Companion.EXTRA_USER_NAME
 import com.example.codewarschallenge.presentation.states.BundleState
+import com.example.codewarschallenge.presentation.states.ProgressbarState
 import com.example.codewarschallenge.presentation.states.UsersAuthoredChallengeState
 import com.example.codewarschallenge.presentation.states.UsersCompleteChallengeState
 import kotlinx.coroutines.launch
@@ -24,6 +25,9 @@ class ChallengeViewModel @Inject constructor(private val useCase: ChallengeUseCa
     private val bundleState: MutableLiveData<BundleState> = MutableLiveData()
     val onBundleState: LiveData<BundleState> = bundleState
 
+    private val progressBarState: MutableLiveData<ProgressbarState> = MutableLiveData()
+    val onProgressbarState: LiveData<ProgressbarState> = progressBarState
+
     fun validateBundle(intent: Intent?) {
         if (intent != null && checkExtras(intent)) {
             bundleState.value = BundleState.OnBundleOk
@@ -38,23 +42,29 @@ class ChallengeViewModel @Inject constructor(private val useCase: ChallengeUseCa
 
     fun fetchCompleteChallenges(user: String) {
         viewModelScope.launch {
+            progressBarState.postValue(ProgressbarState.Show)
             val data = useCase.getCompleteChallengeData(user)
             if(!data.isNullOrEmpty()) {
                 completeChallengeState.postValue(UsersCompleteChallengeState.OnUsersCompleteChallengeAvailable(data))
             }  else {
                 completeChallengeState.postValue(UsersCompleteChallengeState.OnUsersCompleteChallengeUnavailable)
             }
+        }.invokeOnCompletion {
+            progressBarState.postValue(ProgressbarState.Hide)
         }
     }
 
     fun fetchAuthoredChallenges(user: String) {
         viewModelScope.launch {
+            progressBarState.postValue(ProgressbarState.Show)
             val data = useCase.getAuthoredChallengeData(user)
             if(!data.isNullOrEmpty()) {
                 authoredChallengeState.postValue(UsersAuthoredChallengeState.UsersAuthoredChallengeAvailable(data))
             } else {
                 authoredChallengeState.postValue(UsersAuthoredChallengeState.UsersAuthoredChallengeUnavailable)
             }
+        }.invokeOnCompletion {
+            progressBarState.postValue(ProgressbarState.Hide)
         }
     }
 }

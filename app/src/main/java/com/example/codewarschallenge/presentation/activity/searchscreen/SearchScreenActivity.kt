@@ -24,6 +24,7 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
 
     private val binding by lazy { ActivitySearchScreenBinding.inflate(layoutInflater) }
     private val adapter by lazy { UsersInfoAdapter(this) }
+    private lateinit var username: String
 
     @Inject
     lateinit var viewModel: SearchScreenViewModel
@@ -53,7 +54,6 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
         val actionBar = supportActionBar
         actionBar?.apply {
             setTitle(R.string.search_toolbar_title)
-            setDisplayHomeAsUpEnabled(true)
         }
     }
 
@@ -68,6 +68,7 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
                 is UserInfoState.OnUserInfoAvailable -> {
                     binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
                     adapter.updateUsers(it.user)
+                    sendIntentToChallenges()
                 }
                 UserInfoState.OnUserInfoUnavailable -> {
                     Toast.makeText(this, getString(R.string.search_screen_user_not_found_message), Toast.LENGTH_LONG).show()
@@ -95,9 +96,7 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
                     viewModel.fetchUserByName(it)
-                    val intent = Intent(this@SearchScreenActivity, ChallengesActivity::class.java)
-                    intent.putExtra(ChallengesActivity.EXTRA_USER_NAME, query)
-                    startActivity(intent)
+                    username = query
                 }
                 return false
             }
@@ -108,6 +107,12 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
             }
 
         })
+    }
+
+    private fun sendIntentToChallenges() {
+        val intent = Intent(this@SearchScreenActivity, ChallengesActivity::class.java)
+        intent.putExtra(ChallengesActivity.EXTRA_USER_NAME, username)
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
