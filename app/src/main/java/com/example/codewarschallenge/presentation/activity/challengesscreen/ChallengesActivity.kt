@@ -9,9 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ActivityChallengesBinding
-import com.example.codewarschallenge.domain.listener.CompleteChallengeDetailsListener
+import com.example.codewarschallenge.domain.listener.ChallengeDetailsListener
+import com.example.codewarschallenge.domain.model.AuthoredChallengesData
 import com.example.codewarschallenge.domain.model.CompleteChallengesData
 import com.example.codewarschallenge.mainapplication.MainApplication
+import com.example.codewarschallenge.presentation.activity.authoredchallengedetailsactivity.AuthoredChallengeDetailsActivity
+import com.example.codewarschallenge.presentation.activity.authoredchallengedetailsactivity.AuthoredChallengeDetailsActivity.Companion.EXTRA_AUTHORED_CHALLENGE_DETAILS
 import com.example.codewarschallenge.presentation.activity.completechallengedetailsscreen.CompleteChallengeDetailsActivity
 import com.example.codewarschallenge.presentation.activity.completechallengedetailsscreen.CompleteChallengeDetailsActivity.Companion.EXTRA_COMPLETE_CHALLENGE_DETAILS
 import com.example.codewarschallenge.presentation.fragments.AuthoredChallengesFragment
@@ -22,7 +25,7 @@ import com.example.codewarschallenge.presentation.states.UsersAuthoredChallengeS
 import com.example.codewarschallenge.presentation.states.UsersCompleteChallengeState
 import javax.inject.Inject
 
-class ChallengesActivity : AppCompatActivity(), CompleteChallengeDetailsListener {
+class ChallengesActivity : AppCompatActivity(), ChallengeDetailsListener {
 
     private val binding by lazy { ActivityChallengesBinding.inflate(layoutInflater) }
 
@@ -159,9 +162,15 @@ class ChallengesActivity : AppCompatActivity(), CompleteChallengeDetailsListener
         Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
     }
 
-    override fun onClickViewDetails(data: CompleteChallengesData) {
+    override fun onClickViewCompleteChallengeDetails(data: CompleteChallengesData) {
         val intent = Intent(this, CompleteChallengeDetailsActivity::class.java)
         intent.putExtra(EXTRA_COMPLETE_CHALLENGE_DETAILS, data)
+        startActivity(intent)
+    }
+
+    override fun onClickViewAuthoredChallengeDetails(data: AuthoredChallengesData) {
+        val intent = Intent(this, AuthoredChallengeDetailsActivity::class.java)
+        intent.putExtra(EXTRA_AUTHORED_CHALLENGE_DETAILS, data)
         startActivity(intent)
     }
 }

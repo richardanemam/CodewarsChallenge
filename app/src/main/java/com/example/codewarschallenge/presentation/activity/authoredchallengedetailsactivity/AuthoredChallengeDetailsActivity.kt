@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ActivityAuthoredChallengeDetailsBinding
 import com.example.codewarschallenge.domain.model.AuthoredChallengesData
+import com.example.codewarschallenge.mainapplication.MainApplication
 import com.example.codewarschallenge.presentation.states.BundleState
 import javax.inject.Inject
 
@@ -24,6 +25,9 @@ class AuthoredChallengeDetailsActivity: AppCompatActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
+        setContentView(binding.root)
+        (application as MainApplication).getApplicationComponent().injection(this)
+
         viewModel.validateBundle(intent)
         subscribeUI()
     }

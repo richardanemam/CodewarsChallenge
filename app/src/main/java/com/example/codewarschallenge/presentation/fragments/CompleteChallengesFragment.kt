@@ -2,7 +2,6 @@ package com.example.codewarschallenge.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +10,17 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codewarschallenge.R
-import com.example.codewarschallenge.domain.listener.CompleteChallengeDetailsListener
+import com.example.codewarschallenge.domain.listener.ChallengeDetailsListener
 import com.example.codewarschallenge.domain.model.CompleteChallengesData
 import com.example.codewarschallenge.presentation.adapter.CompleteChallengesAdapter
 
 class CompleteChallengesFragment: Fragment() {
 
-    private lateinit var listener: CompleteChallengeDetailsListener
+    private lateinit var listener: ChallengeDetailsListener
     private lateinit var rvChallenges: RecyclerView
     private lateinit var challengesData: List<CompleteChallengesData>
 
     companion object {
-        private const val TAG_LISTENER = "ERROR CASTING LISTENER"
         private const val EXTRA_COMPLETE_CHALLENGES = "completeChallenges"
         fun newInstance(data: List<CompleteChallengesData>) = CompleteChallengesFragment().apply {
             arguments = bundleOf(EXTRA_COMPLETE_CHALLENGES to data)
@@ -43,9 +41,9 @@ class CompleteChallengesFragment: Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
-            listener = context as CompleteChallengeDetailsListener
+            listener = context as ChallengeDetailsListener
         }catch (e: ClassCastException) {
-            e.message?.let { Log.e(TAG_LISTENER, it) }
+            throw ClassCastException(e.message)
         }
     }
 

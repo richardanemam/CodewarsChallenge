@@ -1,5 +1,6 @@
 package com.example.codewarschallenge.di
 
+import com.example.codewarschallenge.presentation.activity.authoredchallengedetailsactivity.AuthoredChallengeDetailsActivity
 import com.example.codewarschallenge.presentation.activity.challengesscreen.ChallengesActivity
 import com.example.codewarschallenge.presentation.activity.completechallengedetailsscreen.CompleteChallengeDetailsActivity
 import com.example.codewarschallenge.presentation.activity.searchscreen.SearchScreenActivity
@@ -12,4 +13,6 @@ interface ApplicationComponent {
     fun injection(searchScreenActivity: SearchScreenActivity)
     fun injection(challengesActivity: ChallengesActivity)
     fun injection(completeChallengeDetailsActivity: CompleteChallengeDetailsActivity)
+    fun injection(authoredChallengeDetailsActivity: AuthoredChallengeDetailsActivity)
+
 }
