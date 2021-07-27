@@ -20,8 +20,9 @@
     <string name="search_screen_item_show_user_challenges">show challenges</string>
 
     <!-- CHALLENGES SCREEN -->
+    <string name="challenges_toolbar_title">Challenges</string>
     <string name="challenges_menu_complete">complete</string>
     <string name="challenges_menu_authored">authored</string>
-
-
+    <string name="challenges_item_name">Challenge name:</string>
+    <string name="challenges_item_description">Description:</string>
 </resources>
