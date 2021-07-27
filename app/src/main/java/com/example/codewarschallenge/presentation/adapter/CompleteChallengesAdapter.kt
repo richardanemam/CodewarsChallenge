@@ -5,9 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ItemChallengesBinding
+import com.example.codewarschallenge.domain.listener.CompleteChallengeDetailsListener
 import com.example.codewarschallenge.domain.model.CompleteChallengesData
 
-class CompleteChallengesAdapter(private val data: List<CompleteChallengesData>): RecyclerView.Adapter<CompleteChallengesAdapter.CompleteChallengesViewHolder>() {
+class CompleteChallengesAdapter(
+    private val data: List<CompleteChallengesData>,
+    private val listener: CompleteChallengeDetailsListener
+): RecyclerView.Adapter<CompleteChallengesAdapter.CompleteChallengesViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,6 +35,13 @@ class CompleteChallengesAdapter(private val data: List<CompleteChallengesData>):
                 binding.tvItemChallengesDescriptionTitle
                     .context
                     .getString(R.string.challenges_item_completed_at)
+            onClickViewDetails()
+        }
+
+        private fun onClickViewDetails() {
+            binding.btnItemChallengesViewChallengeDetails.setOnClickListener {
+                listener.onClickViewDetails(data[absoluteAdapterPosition])
+            }
         }
     }
 }

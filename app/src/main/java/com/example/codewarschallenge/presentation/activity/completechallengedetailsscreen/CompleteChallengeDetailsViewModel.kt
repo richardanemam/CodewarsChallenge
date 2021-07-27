@@ -6,8 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.codewarschallenge.presentation.activity.completechallengedetailsscreen.CompleteChallengeDetailsActivity.Companion.EXTRA_COMPLETE_CHALLENGE_DETAILS
 import com.example.codewarschallenge.presentation.states.BundleState
+import javax.inject.Inject
 
-class CompleteChallengeDetailsViewModel: ViewModel() {
+class CompleteChallengeDetailsViewModel @Inject constructor() : ViewModel() {
 
     private val bundleState: MutableLiveData<BundleState> = MutableLiveData()
     val onBundleState: LiveData<BundleState> = bundleState

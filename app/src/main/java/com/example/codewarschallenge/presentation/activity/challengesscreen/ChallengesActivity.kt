@@ -1,5 +1,6 @@
 package com.example.codewarschallenge.presentation.activity.challengesscreen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -8,7 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ActivityChallengesBinding
+import com.example.codewarschallenge.domain.listener.CompleteChallengeDetailsListener
+import com.example.codewarschallenge.domain.model.CompleteChallengesData
 import com.example.codewarschallenge.mainapplication.MainApplication
+import com.example.codewarschallenge.presentation.activity.completechallengedetailsscreen.CompleteChallengeDetailsActivity
+import com.example.codewarschallenge.presentation.activity.completechallengedetailsscreen.CompleteChallengeDetailsActivity.Companion.EXTRA_COMPLETE_CHALLENGE_DETAILS
 import com.example.codewarschallenge.presentation.fragments.AuthoredChallengesFragment
 import com.example.codewarschallenge.presentation.fragments.CompleteChallengesFragment
 import com.example.codewarschallenge.presentation.states.BundleState
@@ -17,7 +22,7 @@ import com.example.codewarschallenge.presentation.states.UsersAuthoredChallengeS
 import com.example.codewarschallenge.presentation.states.UsersCompleteChallengeState
 import javax.inject.Inject
 
-class ChallengesActivity : AppCompatActivity() {
+class ChallengesActivity : AppCompatActivity(), CompleteChallengeDetailsListener {
 
     private val binding by lazy { ActivityChallengesBinding.inflate(layoutInflater) }
 
@@ -152,5 +157,11 @@ class ChallengesActivity : AppCompatActivity() {
 
     private fun handleError(errorMessage: String) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onClickViewDetails(data: CompleteChallengesData) {
+        val intent = Intent(this, CompleteChallengeDetailsActivity::class.java)
+        intent.putExtra(EXTRA_COMPLETE_CHALLENGE_DETAILS, data)
+        startActivity(intent)
     }
 }

@@ -1,6 +1,7 @@
 package com.example.codewarschallenge.di
 
 import com.example.codewarschallenge.presentation.activity.challengesscreen.ChallengesActivity
+import com.example.codewarschallenge.presentation.activity.completechallengedetailsscreen.CompleteChallengeDetailsActivity
 import com.example.codewarschallenge.presentation.activity.searchscreen.SearchScreenActivity
 import dagger.Component
 import javax.inject.Singleton
@@ -10,4 +11,5 @@ import javax.inject.Singleton
 interface ApplicationComponent {
     fun injection(searchScreenActivity: SearchScreenActivity)
     fun injection(challengesActivity: ChallengesActivity)
+    fun injection(completeChallengeDetailsActivity: CompleteChallengeDetailsActivity)
 }

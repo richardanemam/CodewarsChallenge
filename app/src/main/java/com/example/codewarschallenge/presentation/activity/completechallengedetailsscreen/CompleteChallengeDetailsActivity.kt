@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ActivityCompleteChallengeDetailsBinding
 import com.example.codewarschallenge.domain.model.CompleteChallengesData
+import com.example.codewarschallenge.mainapplication.MainApplication
 import com.example.codewarschallenge.presentation.states.BundleState
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ class CompleteChallengeDetailsActivity : AppCompatActivity() {
     private val binding by lazy { ActivityCompleteChallengeDetailsBinding.inflate(layoutInflater) }
 
     @Inject
-    private lateinit var viewModel: CompleteChallengeDetailsViewModel
+    lateinit var viewModel: CompleteChallengeDetailsViewModel
     private lateinit var data: CompleteChallengesData
 
     companion object {
@@ -25,6 +26,7 @@ class CompleteChallengeDetailsActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         setContentView(binding.root)
+        (application as MainApplication).getApplicationComponent().injection(this)
 
         viewModel.validateBundle(intent)
         subscribeUI()
