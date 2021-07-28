@@ -5,6 +5,7 @@ import com.example.codewarschallenge.domain.model.CompleteChallengesModel
 import com.example.codewarschallenge.domain.model.UserModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import retrofit2.Response
 
 open class BaseTest {
 
@@ -27,4 +28,6 @@ open class BaseTest {
 
     fun getCompleteChallengesData() = getCompleteChallenges().data
     fun getAuthoredChallengesData() = getAuthoredChallenges().data
+    fun getCompleteChallengeResponse() = Response.success(getCompleteChallenges())
+    fun getAuthoredResponse() = Response.success(getAuthoredChallenges())
 }
