@@ -28,6 +28,7 @@ open class BaseTest {
 
     fun getCompleteChallengesData() = getCompleteChallenges().data
     fun getAuthoredChallengesData() = getAuthoredChallenges().data
+    fun getUserResponse() = Response.success(getUser())
     fun getCompleteChallengeResponse() = Response.success(getCompleteChallenges())
     fun getAuthoredResponse() = Response.success(getAuthoredChallenges())
 }
