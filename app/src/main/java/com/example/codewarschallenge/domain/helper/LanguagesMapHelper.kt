@@ -41,7 +41,7 @@ object LanguagesMapHelper {
 
         mappedLanguages.add(
             MappedLanguages(
-                languageName = "CoffeScript",
+                languageName = "CoffeeScript",
                 score = languages.coffeeScript?.score
             )
         )
@@ -237,7 +237,7 @@ object LanguagesMapHelper {
 
         mappedLanguages.add(
             MappedLanguages(
-                languageName = "Objcy",
+                languageName = "Objc",
                 score = languages.objc?.score
             )
         )

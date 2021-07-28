@@ -2,7 +2,7 @@ package com.example.codewarschallenge.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.codewarschallenge.common.BaseTest
-import com.example.codewarschallenge.data.repository.CodewarsRepository
+import com.example.codewarschallenge.data.repository.CodeWarsRepository
 import com.example.codewarschallenge.domain.usecase.SearchScreenUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -22,7 +22,7 @@ class SearchScreenUseCaseTest : BaseTest() {
     val dispatcher = TestCoroutineDispatcher()
 
     private lateinit var useCase: SearchScreenUseCase
-    private val repository = mockk<CodewarsRepository>()
+    private val repository = mockk<CodeWarsRepository>()
 
     @ExperimentalCoroutinesApi
     @Before

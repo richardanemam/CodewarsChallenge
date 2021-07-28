@@ -2,7 +2,7 @@ package com.example.codewarschallenge.di
 
 import android.app.Application
 import android.content.Context
-import com.example.codewarschallenge.data.api.CodewarsApi
+import com.example.codewarschallenge.data.api.CodeWarsApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -27,8 +27,8 @@ class ApplicationModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun provideService(): CodewarsApi {
-        return provideRetrofit().create(CodewarsApi::class.java)
+    fun provideService(): CodeWarsApi {
+        return provideRetrofit().create(CodeWarsApi::class.java)
     }
 
     @Singleton

@@ -1,6 +1,6 @@
 package com.example.codewarschallenge.data.repository
 
-import com.example.codewarschallenge.data.api.CodewarsApi
+import com.example.codewarschallenge.data.api.CodeWarsApi
 import com.example.codewarschallenge.domain.model.AuthoredChallengesModel
 import com.example.codewarschallenge.domain.model.CompleteChallengesModel
 import com.example.codewarschallenge.domain.model.UserModel
@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
 
-class CodewarsRepository @Inject constructor(private val service: CodewarsApi) {
+class CodeWarsRepository @Inject constructor(private val service: CodeWarsApi) {
 
     suspend fun getUser(user: String): Response<UserModel> {
         return withContext(Dispatchers.IO) {

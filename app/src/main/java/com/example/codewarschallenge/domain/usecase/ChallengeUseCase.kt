@@ -1,11 +1,11 @@
 package com.example.codewarschallenge.domain.usecase
 
-import com.example.codewarschallenge.data.repository.CodewarsRepository
+import com.example.codewarschallenge.data.repository.CodeWarsRepository
 import com.example.codewarschallenge.domain.model.AuthoredChallengesData
 import com.example.codewarschallenge.domain.model.CompleteChallengesData
 import javax.inject.Inject
 
-class ChallengeUseCase @Inject constructor(private val repository: CodewarsRepository) {
+class ChallengeUseCase @Inject constructor(private val repository: CodeWarsRepository) {
 
     suspend fun getCompleteChallengeData(user: String): List<CompleteChallengesData>? {
         val usersCompleteChallenges = repository.getCompleteChallenge(user)

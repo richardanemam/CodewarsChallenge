@@ -56,7 +56,7 @@ data class Languages(
     @SerializedName("lua") val lua: Lua?,
     @SerializedName("sql") val sql: Sql?,
     @SerializedName("r") val r: R?,
-    @SerializedName("objc") val objc: Go?,
+    @SerializedName("objc") val objc: Objc?,
     @SerializedName("nim") val nim: Nim?,
     @SerializedName("kotlin") val kotlin: Kotlin?,
     @SerializedName("groovy") val groovy: Groovy?,
