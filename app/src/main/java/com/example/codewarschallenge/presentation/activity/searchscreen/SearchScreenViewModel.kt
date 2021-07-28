@@ -53,6 +53,7 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
 
     fun orderUserListByRank(): ArrayList<UserModel> {
         if(users.isNotEmpty() && users.size <= 5) {
+            usersOrderedByRank.clear()
             usersOrderedByRank.addAll(users.sortedBy { it.leaderboardPosition })
         }
         return usersOrderedByRank
