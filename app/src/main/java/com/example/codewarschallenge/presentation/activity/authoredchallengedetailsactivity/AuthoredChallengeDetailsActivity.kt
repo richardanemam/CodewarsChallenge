@@ -23,8 +23,8 @@ class AuthoredChallengeDetailsActivity: AppCompatActivity() {
         const val EXTRA_AUTHORED_CHALLENGE_DETAILS = "authoredChallengeDetails"
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(binding.root)
         (application as MainApplication).getApplicationComponent().injection(this)
 

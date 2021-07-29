@@ -37,8 +37,8 @@ class ChallengesActivity : AppCompatActivity(), ChallengeDetailsListener {
         const val EXTRA_USER_NAME = "username"
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         (application as MainApplication).getApplicationComponent().injection(this)

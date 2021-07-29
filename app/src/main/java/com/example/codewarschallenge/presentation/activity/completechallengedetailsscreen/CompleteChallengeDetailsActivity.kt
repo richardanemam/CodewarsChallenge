@@ -23,8 +23,8 @@ class CompleteChallengeDetailsActivity : AppCompatActivity() {
         const val EXTRA_COMPLETE_CHALLENGE_DETAILS = "completeChallengeDetails"
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(binding.root)
         (application as MainApplication).getApplicationComponent().injection(this)
 
