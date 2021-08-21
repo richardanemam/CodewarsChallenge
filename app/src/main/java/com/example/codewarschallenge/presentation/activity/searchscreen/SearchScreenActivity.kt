@@ -68,7 +68,6 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
                 is UserInfoState.OnUserInfoAvailable -> {
                     binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
                     adapter.updateUsers(it.user)
-                    sendIntentToChallenges()
                 }
                 UserInfoState.OnUserInfoUnavailable -> {
                     Toast.makeText(this, getString(R.string.search_screen_user_not_found_message), Toast.LENGTH_LONG).show()
@@ -107,12 +106,6 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
             }
 
         })
-    }
-
-    private fun sendIntentToChallenges() {
-        val intent = Intent(this@SearchScreenActivity, ChallengesActivity::class.java)
-        intent.putExtra(ChallengesActivity.EXTRA_USER_NAME, username)
-        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
