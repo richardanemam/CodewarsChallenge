@@ -32,457 +32,60 @@ data class Overall(
 
 @Parcelize
 data class Languages(
-    @SerializedName("javascript") val javaScript: JavaScript?,
-    @SerializedName("ruby") val ruby: Ruby?,
-    @SerializedName("coffescript") val coffeeScript: CoffeeScript?,
-    @SerializedName("csharp") val cSharp: CSharp?,
-    @SerializedName("python") val python: Python?,
-    @SerializedName("java") val java: Java?,
-    @SerializedName("go") val go: Go?,
-    @SerializedName("haskell") val haskell: Haskell?,
-    @SerializedName("cpp") val cpp: Cpp?,
-    @SerializedName("elixir") val elixir: Elixir?,
-    @SerializedName("dart") val dart: Dart?,
-    @SerializedName("typescript") val typeScript: TypeScript?,
-    @SerializedName("fsharp") val fSharp: FSharp?,
-    @SerializedName("ocaml") val ocaml: Ocaml?,
-    @SerializedName("clojure") val clojure: Clojure?,
-    @SerializedName("rust") val rust: Rust?,
-    @SerializedName("c") val c: C?,
-    @SerializedName("php") val php: Php?,
-    @SerializedName("crystal") val crystal: Crystal?,
-    @SerializedName("swift") val swift: Swift?,
-    @SerializedName("shell") val shell: Shell?,
-    @SerializedName("lua") val lua: Lua?,
-    @SerializedName("sql") val sql: Sql?,
-    @SerializedName("r") val r: R?,
-    @SerializedName("objc") val objc: Objc?,
-    @SerializedName("nim") val nim: Nim?,
-    @SerializedName("kotlin") val kotlin: Kotlin?,
-    @SerializedName("groovy") val groovy: Groovy?,
-    @SerializedName("scala") val scala: Scala?,
-    @SerializedName("solidity") val solidity: Solidity?,
-    @SerializedName("erlang") val erlang: Erlang?,
-    @SerializedName("fortran") val fortran: Fortran?,
-    @SerializedName("julia") val julia: Julia?,
-    @SerializedName("powershell") val powershell: PowerShel?,
-    @SerializedName("reason") val reason: Reason?,
-    @SerializedName("racket") val racket: Racket?,
-    @SerializedName("vb") val vb: Vb?,
-    @SerializedName("forth") val forth: Forth?,
-    @SerializedName("factor") val factor: Factor?,
-    @SerializedName("prolog") val prolog: Prolog?,
-    @SerializedName("cobol") val cobol: Cobol?,
-    @SerializedName("coq") val coq: Coq?,
-    @SerializedName("haxe") val haxe: Haxe?,
-    @SerializedName("elm") val elm: Elm?,
-    @SerializedName("cfml") val cfml: Cfml?,
-    @SerializedName("purescript") val purescript: PureScript?,
-    @SerializedName("commonlisp") val commonlisp: CommonLisp?,
-    @SerializedName("perl") val perl: Perl?,
-    @SerializedName("raku") val raku: Raku?,
-    @SerializedName("pascal") val pascal: Pascal?
+    @SerializedName("javascript") val javaScript: LanguageInfo?,
+    @SerializedName("ruby") val ruby: LanguageInfo?,
+    @SerializedName("coffescript") val coffeeScript: LanguageInfo?,
+    @SerializedName("csharp") val cSharp: LanguageInfo?,
+    @SerializedName("python") val python: LanguageInfo?,
+    @SerializedName("java") val java: LanguageInfo?,
+    @SerializedName("go") val go: LanguageInfo?,
+    @SerializedName("haskell") val haskell: LanguageInfo?,
+    @SerializedName("cpp") val cpp: LanguageInfo?,
+    @SerializedName("elixir") val elixir: LanguageInfo?,
+    @SerializedName("dart") val dart: LanguageInfo?,
+    @SerializedName("typescript") val typeScript: LanguageInfo?,
+    @SerializedName("fsharp") val fSharp: LanguageInfo?,
+    @SerializedName("ocaml") val ocaml: LanguageInfo?,
+    @SerializedName("clojure") val clojure: LanguageInfo?,
+    @SerializedName("rust") val rust: LanguageInfo?,
+    @SerializedName("c") val c: LanguageInfo?,
+    @SerializedName("php") val php: LanguageInfo?,
+    @SerializedName("crystal") val crystal: LanguageInfo?,
+    @SerializedName("swift") val swift: LanguageInfo?,
+    @SerializedName("shell") val shell: LanguageInfo?,
+    @SerializedName("lua") val lua: LanguageInfo?,
+    @SerializedName("sql") val sql: LanguageInfo?,
+    @SerializedName("r") val r: LanguageInfo?,
+    @SerializedName("objc") val objc: LanguageInfo?,
+    @SerializedName("nim") val nim: LanguageInfo?,
+    @SerializedName("kotlin") val kotlin: LanguageInfo?,
+    @SerializedName("groovy") val groovy: LanguageInfo?,
+    @SerializedName("scala") val scala: LanguageInfo?,
+    @SerializedName("solidity") val solidity: LanguageInfo?,
+    @SerializedName("erlang") val erlang: LanguageInfo?,
+    @SerializedName("fortran") val fortran: LanguageInfo?,
+    @SerializedName("julia") val julia: LanguageInfo?,
+    @SerializedName("powershell") val powershell: LanguageInfo?,
+    @SerializedName("reason") val reason: LanguageInfo?,
+    @SerializedName("racket") val racket: LanguageInfo?,
+    @SerializedName("vb") val vb: LanguageInfo?,
+    @SerializedName("forth") val forth: LanguageInfo?,
+    @SerializedName("factor") val factor: LanguageInfo?,
+    @SerializedName("prolog") val prolog: LanguageInfo?,
+    @SerializedName("cobol") val cobol: LanguageInfo?,
+    @SerializedName("coq") val coq: LanguageInfo?,
+    @SerializedName("haxe") val haxe: LanguageInfo?,
+    @SerializedName("elm") val elm: LanguageInfo?,
+    @SerializedName("cfml") val cfml: LanguageInfo?,
+    @SerializedName("purescript") val purescript: LanguageInfo?,
+    @SerializedName("commonlisp") val commonlisp: LanguageInfo?,
+    @SerializedName("perl") val perl: LanguageInfo?,
+    @SerializedName("raku") val raku: LanguageInfo?,
+    @SerializedName("pascal") val pascal: LanguageInfo?
 ) : Parcelable
 
 @Parcelize
-data class JavaScript(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-
-@Parcelize
-data class Ruby(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class CoffeeScript(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class CSharp(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Python(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Go(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Java(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Haskell(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Cpp(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Elixir(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-
-@Parcelize
-data class Dart(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class TypeScript(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class FSharp(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Ocaml(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Clojure(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Rust(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class C(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Php(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-
-@Parcelize
-data class Crystal(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Swift(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Shell(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Lua(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Sql(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class R(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Nim(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Objc(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Kotlin(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Groovy(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Scala(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Solidity(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Erlang(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Fortran(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Julia(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class PowerShel(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Reason(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Racket(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Vb(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Forth(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Factor(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Prolog(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Cobol(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Coq(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-
-@Parcelize
-data class Haxe(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Elm(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Cfml(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class PureScript(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class CommonLisp(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Perl(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-@Parcelize
-data class Raku(
-    @SerializedName("rank") val rank: Int?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("color") val color: String?,
-    @SerializedName("score") val score: Int?
-) : Parcelable
-
-
-@Parcelize
-data class Pascal(
+data class LanguageInfo(
     @SerializedName("rank") val rank: Int?,
     @SerializedName("name") val name: String?,
     @SerializedName("color") val color: String?,

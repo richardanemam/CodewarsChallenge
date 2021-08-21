@@ -51,8 +51,7 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
 
     private fun setUpToolbarsBackButton() {
         setSupportActionBar(binding.toolbarSearchScreenId)
-        val actionBar = supportActionBar
-        actionBar?.apply {
+        supportActionBar.apply {
             setTitle(R.string.search_toolbar_title)
         }
     }
