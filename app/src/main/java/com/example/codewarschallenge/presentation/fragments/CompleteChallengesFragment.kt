@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.codewarschallenge.R
+import com.example.codewarschallenge.databinding.FragmentCompleteChallengesBinding
 import com.example.codewarschallenge.domain.listener.ChallengeDetailsListener
 import com.example.codewarschallenge.domain.model.CompleteChallengesData
 import com.example.codewarschallenge.presentation.adapter.CompleteChallengesAdapter
@@ -17,8 +16,8 @@ import com.example.codewarschallenge.presentation.adapter.CompleteChallengesAdap
 class CompleteChallengesFragment: Fragment() {
 
     private lateinit var listener: ChallengeDetailsListener
-    private lateinit var rvChallenges: RecyclerView
     private lateinit var challengesData: List<CompleteChallengesData>
+    private lateinit var binding: FragmentCompleteChallengesBinding
 
     companion object {
         private const val EXTRA_COMPLETE_CHALLENGES = "completeChallenges"
@@ -31,11 +30,12 @@ class CompleteChallengesFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_complete_challenges, container, false)
+    ): View {
+
+        binding = FragmentCompleteChallengesBinding.inflate(inflater, container, false)
         setUpExtras()
-        setUpViews(view)
-        return view
+        setUpViews()
+        return binding.root
     }
 
     override fun onAttach(context: Context) {
@@ -53,9 +53,8 @@ class CompleteChallengesFragment: Fragment() {
         ) as List<CompleteChallengesData>
     }
 
-    private fun  setUpViews(view: View) {
-        rvChallenges = view.findViewById(R.id.rv_complete_challenges_list)
-        rvChallenges.adapter = CompleteChallengesAdapter(challengesData, listener)
-        rvChallenges.layoutManager = LinearLayoutManager(view.context)
+    private fun  setUpViews() {
+        binding.rvCompleteChallengesList.adapter = CompleteChallengesAdapter(challengesData, listener)
+        binding.rvCompleteChallengesList.layoutManager = LinearLayoutManager(binding.root.context)
     }
 }

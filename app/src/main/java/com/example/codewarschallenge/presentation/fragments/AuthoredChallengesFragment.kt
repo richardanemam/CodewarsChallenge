@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.codewarschallenge.R
+import com.example.codewarschallenge.databinding.FragmentAuthoredChallengesBinding
 import com.example.codewarschallenge.domain.listener.ChallengeDetailsListener
 import com.example.codewarschallenge.domain.model.AuthoredChallengesData
 import com.example.codewarschallenge.presentation.adapter.AuthoredChallengesAdapter
@@ -17,9 +16,9 @@ import java.lang.ClassCastException
 
 class AuthoredChallengesFragment: Fragment() {
 
-    private lateinit var rvChallenges: RecyclerView
     private lateinit var challengesData: List<AuthoredChallengesData>
     private lateinit var listener: ChallengeDetailsListener
+    private lateinit var binding: FragmentAuthoredChallengesBinding
 
     companion object {
         private const val EXTRA_AUTHORED_CHALLENGES = "authoredChallenges"
@@ -32,11 +31,11 @@ class AuthoredChallengesFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_authored_challenges, container, false)
+    ): View {
+        binding = FragmentAuthoredChallengesBinding.inflate(inflater, container, false)
         setUpExtras()
-        setUpViews(view)
-        return view
+        setUpViews()
+        return binding.root
     }
 
     override fun onAttach(context: Context) {
@@ -54,9 +53,8 @@ class AuthoredChallengesFragment: Fragment() {
         ) as List<AuthoredChallengesData>
     }
 
-    private fun  setUpViews(view: View) {
-        rvChallenges = view.findViewById(R.id.rv_authored_challenges_list)
-        rvChallenges.adapter = AuthoredChallengesAdapter(challengesData, listener)
-        rvChallenges.layoutManager = LinearLayoutManager(view.context)
+    private fun  setUpViews() {
+        binding.rvAuthoredChallengesList.adapter = AuthoredChallengesAdapter(challengesData, listener)
+        binding.rvAuthoredChallengesList.layoutManager = LinearLayoutManager(binding.root.context)
     }
 }
