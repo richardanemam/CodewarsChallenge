@@ -25,7 +25,6 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
 
     private val binding by lazy { ActivitySearchScreenBinding.inflate(layoutInflater) }
     private val adapter by lazy { UsersInfoAdapter(this) }
-    private lateinit var username: String
 
     @Inject
     lateinit var viewModel: SearchScreenViewModel
@@ -104,7 +103,6 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
                     viewModel.fetchUserByName(it)
-                    username = query
                 }
                 return false
             }
