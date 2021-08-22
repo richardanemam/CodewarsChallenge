@@ -20,8 +20,13 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
     private val progressBarState: MutableLiveData<ProgressbarState> = MutableLiveData()
     val onProgressbarState: LiveData<ProgressbarState> = progressBarState
 
-    private val users = ArrayList<UserModel>()
-    private val usersOrderedByRank = ArrayList<UserModel>()
+    private val users = ArrayList<UserModel>(5)
+    private val usersOrderedByRank = ArrayList<UserModel>(5)
+
+    companion object {
+        private const val TOTAL_USERS_ON_LIST = 5
+        private const val INDEX_ZERO = 0
+    }
 
     fun fetchUserByName(name: String) {
         viewModelScope.launch {
@@ -34,25 +39,27 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
     }
 
     private fun handleUsersAvailability(user: UserModel?) {
-        if (user != null) {
+        if (user != null && !users.contains(user)) {
             orderUserListBySearch(user)
             userInfoState.postValue(UserInfoState.OnUserInfoAvailable(users))
+        }else if(user != null && users.contains(user)) {
+            userInfoState.postValue(UserInfoState.OnUserIsAlreadyOnList)
         } else {
             userInfoState.postValue(UserInfoState.OnUserInfoUnavailable)
         }
     }
 
     private fun orderUserListBySearch(user: UserModel) {
-        if (users.size < 5) {
-            users.add(0, user)
+        if (users.size < TOTAL_USERS_ON_LIST) {
+            users.add(INDEX_ZERO, user)
         } else {
             users.removeLast()
-            users.add(0, user)
+            users.add(INDEX_ZERO, user)
         }
     }
 
     fun orderUserListByRank(): ArrayList<UserModel> {
-        if(users.isNotEmpty() && users.size <= 5) {
+        if(users.isNotEmpty() && users.size <= TOTAL_USERS_ON_LIST) {
             usersOrderedByRank.clear()
             usersOrderedByRank.addAll(users.sortedBy { it.leaderboardPosition })
         }

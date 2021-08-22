@@ -16,6 +16,7 @@ sealed class ProgressbarState {
 sealed class UserInfoState {
     data class OnUserInfoAvailable(val user: ArrayList<UserModel>) : UserInfoState()
     object OnUserInfoUnavailable: UserInfoState()
+    object OnUserIsAlreadyOnList: UserInfoState()
 }
 
 sealed class UsersCompleteChallengeState {

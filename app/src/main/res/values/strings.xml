@@ -14,6 +14,7 @@
     <string name="search_screen_menu_order_by_search">order by search</string>
     <string name="search_screen_search_for_new_users">Looks like you do not have recent searches, search for users on codewars</string>
     <string name="search_screen_user_not_found_message">User not found, please try again!</string>
+    <string name="search_screen_user_already_on_recent_searches">User info is already displayed on recent searches</string>
     <string name="search_screen_item_user_name_title">Name</string>
     <string name="search_screen_item_user_rank_title">Leaderboard Position</string>
     <string name="search_screen_item_user_best_language_title">Best Language</string>

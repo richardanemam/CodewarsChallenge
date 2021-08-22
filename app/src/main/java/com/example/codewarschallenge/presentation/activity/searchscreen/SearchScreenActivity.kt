@@ -68,6 +68,9 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
                     binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
                     adapter.updateUsers(it.user)
                 }
+                UserInfoState.OnUserIsAlreadyOnList -> {
+                    Toast.makeText(this, getString(R.string.search_screen_user_already_on_recent_searches), Toast.LENGTH_LONG).show()
+                }
                 UserInfoState.OnUserInfoUnavailable -> {
                     Toast.makeText(this, getString(R.string.search_screen_user_not_found_message), Toast.LENGTH_LONG).show()
                 }
