@@ -14,5 +14,4 @@ interface ApplicationComponent {
     fun injection(challengesActivity: ChallengesActivity)
     fun injection(completeChallengeDetailsActivity: CompleteChallengeDetailsActivity)
     fun injection(authoredChallengeDetailsActivity: AuthoredChallengeDetailsActivity)
-
 }

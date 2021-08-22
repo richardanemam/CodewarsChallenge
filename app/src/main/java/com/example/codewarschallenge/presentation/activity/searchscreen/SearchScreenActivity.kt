@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ActivitySearchScreenBinding
@@ -65,7 +66,7 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
         viewModel.onUserInfoState.observe(this, {
             when(it) {
                 is UserInfoState.OnUserInfoAvailable -> {
-                    binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
+                    hideSearchForNewUsersText()
                     adapter.updateUsers(it.user)
                 }
                 UserInfoState.OnUserIsAlreadyOnList -> {
@@ -82,7 +83,7 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
         viewModel.onProgressbarState.observe(this, {
             when(it) {
                 ProgressbarState.Show -> {
-                    binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
+                    hideSearchForNewUsersText()
                     binding.pbSearchScreen.visibility = View.VISIBLE
                 }
                 ProgressbarState.Hide -> {
@@ -90,6 +91,12 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
                 }
             }
         })
+    }
+
+    private fun hideSearchForNewUsersText() {
+        if(binding.tvSearchScreenSearchForNewUsers.isVisible) {
+            binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
+        }
     }
 
     private fun setUpSearchView() {
