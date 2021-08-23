@@ -40,7 +40,7 @@ class SearchScreenViewModelTest: BaseTest() {
 
     @Test
     fun `when fetching user by name it should set users avilable state`() {
-        coEvery { useCase.getUser(any()) } returns getUser()
+        coEvery { useCase.getNewUser(any()) } returns getUser()
         viewModel.fetchUserByName("richardanemam")
 
         Assert.assertEquals(
@@ -51,7 +51,7 @@ class SearchScreenViewModelTest: BaseTest() {
 
     @Test
     fun `when fetching user by name it should set users unavailable state`() {
-        coEvery { useCase.getUser(any()) } returns null
+        coEvery { useCase.getNewUser(any()) } returns null
         viewModel.fetchUserByName("richardanemam")
 
         Assert.assertEquals(

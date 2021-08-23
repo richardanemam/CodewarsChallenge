@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.codewarschallenge.R
@@ -34,7 +35,9 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
         setContentView(binding.root)
 
         (application as MainApplication).getApplicationComponent().injection(this)
+
         setUpViews()
+        viewModel.fetchCachedUsers()
         subscribeUI()
     }
 
@@ -74,6 +77,7 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
                 UserInfoState.OnUserInfoUnavailable -> {
                     Toast.makeText(this, getString(R.string.search_screen_user_not_found_message), Toast.LENGTH_LONG).show()
                 }
+                UserInfoState.OnEmptyCachedList -> showSearchForNewUsersText()
             }
         })
     }
@@ -95,6 +99,12 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
     private fun hideSearchForNewUsersText() {
         if(binding.tvSearchScreenSearchForNewUsers.isVisible) {
             binding.tvSearchScreenSearchForNewUsers.visibility = View.GONE
+        }
+    }
+
+    private fun showSearchForNewUsersText() {
+        if(binding.tvSearchScreenSearchForNewUsers.isGone) {
+            binding.tvSearchScreenSearchForNewUsers.visibility = View.VISIBLE
         }
     }
 
@@ -124,7 +134,7 @@ class SearchScreenActivity: AppCompatActivity(), ShowChallengesListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.menu_order_by_rank -> {
-                adapter.updateUsers(viewModel.orderUserListByRank())
+                viewModel.getListOrderedByRank()
                 true
             }
             else -> super.onOptionsItemSelected(item)

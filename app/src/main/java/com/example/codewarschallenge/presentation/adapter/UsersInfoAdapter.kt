@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codewarschallenge.databinding.ItemSearchedUsersBinding
-import com.example.codewarschallenge.domain.helper.LanguagesMapHelper
 import com.example.codewarschallenge.domain.listener.ShowChallengesListener
-import com.example.codewarschallenge.domain.model.UserModel
+import com.example.codewarschallenge.domain.model.UserInfoModel
 
 class UsersInfoAdapter(private val listener: ShowChallengesListener): RecyclerView.Adapter<UsersInfoAdapter.UsersInfoViewHolder>() {
 
-    private val users = mutableListOf<UserModel>()
+    private val users = mutableListOf<UserInfoModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersInfoViewHolder {
         val binding = ItemSearchedUsersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,7 +22,7 @@ class UsersInfoAdapter(private val listener: ShowChallengesListener): RecyclerVi
 
     override fun getItemCount() = users.size
 
-    fun updateUsers(orderedUsers: List<UserModel>) {
+    fun updateUsers(orderedUsers: List<UserInfoModel>) {
         users.clear()
         users.addAll(orderedUsers)
         notifyDataSetChanged()
@@ -34,23 +33,15 @@ class UsersInfoAdapter(private val listener: ShowChallengesListener): RecyclerVi
         fun bindViews() {
             val user = users[absoluteAdapterPosition]
             binding.tvSearchedUsersName.text = user.name
-            binding.tvSearchedUsersRank.text = user.leaderboardPosition.toString()
-            binding.tvSearchedUsersBestLanguage.text = user.ranks?.languages?.let {
-                LanguagesMapHelper.getBestLanguage(
-                    it
-                )?.languageName
-            }
-            binding.tvSearchedUsersLanguageScore.text = user.ranks?.languages?.let {
-                LanguagesMapHelper.getBestLanguage(
-                    it
-                )?.score.toString()
-            }
-            onClickShowChallenges(user)
+            binding.tvSearchedUsersRank.text = user.leaderBoardPosition.toString()
+            binding.tvSearchedUsersBestLanguage.text = user.bestLanguage
+            binding.tvSearchedUsersLanguageScore.text = user.bestLanguageScore.toString()
+            onClickShowChallenges(user.userName)
         }
 
-        private fun onClickShowChallenges(user: UserModel) {
+        private fun onClickShowChallenges(username: String) {
             binding.btnSearchedUsersShowChallenges.setOnClickListener {
-                user.userName?.let { username -> listener.onClickShowChallenges(username) }
+                listener.onClickShowChallenges(username)
             }
         }
     }

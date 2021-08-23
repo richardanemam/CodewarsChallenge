@@ -2,7 +2,7 @@ package com.example.codewarschallenge.presentation.states
 
 import com.example.codewarschallenge.domain.model.AuthoredChallengesData
 import com.example.codewarschallenge.domain.model.CompleteChallengesData
-import com.example.codewarschallenge.domain.model.UserModel
+import com.example.codewarschallenge.domain.model.UserInfoModel
 
 sealed class SplashState {
     object OpenSearchScreenState : SplashState()
@@ -14,9 +14,10 @@ sealed class ProgressbarState {
 }
 
 sealed class UserInfoState {
-    data class OnUserInfoAvailable(val user: ArrayList<UserModel>) : UserInfoState()
+    data class OnUserInfoAvailable(val user: List<UserInfoModel>) : UserInfoState()
     object OnUserInfoUnavailable: UserInfoState()
     object OnUserIsAlreadyOnList: UserInfoState()
+    object OnEmptyCachedList: UserInfoState()
 }
 
 sealed class UsersCompleteChallengeState {

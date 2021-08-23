@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.codewarschallenge.domain.model.UserModel
+import com.example.codewarschallenge.domain.model.UserInfoModel
 import com.example.codewarschallenge.domain.usecase.SearchScreenUseCase
 import com.example.codewarschallenge.presentation.states.ProgressbarState
 import com.example.codewarschallenge.presentation.states.UserInfoState
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SearchScreenViewModel @Inject constructor(private val useCase: SearchScreenUseCase) :
-    ViewModel() {
+        ViewModel() {
 
     private val userInfoState: MutableLiveData<UserInfoState> = MutableLiveData()
     val onUserInfoState: LiveData<UserInfoState> = userInfoState
@@ -20,49 +20,52 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
     private val progressBarState: MutableLiveData<ProgressbarState> = MutableLiveData()
     val onProgressbarState: LiveData<ProgressbarState> = progressBarState
 
-    private val users = ArrayList<UserModel>(5)
-    private val usersOrderedByRank = ArrayList<UserModel>(5)
-
-    companion object {
-        private const val TOTAL_USERS_ON_LIST = 5
-        private const val INDEX_ZERO = 0
-    }
-
     fun fetchUserByName(name: String) {
         viewModelScope.launch {
             progressBarState.postValue(ProgressbarState.Show)
-            val user = useCase.getUser(name)
-            handleUsersAvailability(user)
+
+            if (name.findUser(useCase.getUsers()) != null) {
+                userInfoState.postValue(UserInfoState.OnUserIsAlreadyOnList)
+            } else {
+                useCase.getNewUser(name)
+                handleUsersAvailability(name)
+            }
+
         }.invokeOnCompletion {
             progressBarState.postValue(ProgressbarState.Hide)
         }
     }
 
-    private fun handleUsersAvailability(user: UserModel?) {
-        if (user != null && !users.contains(user)) {
-            orderUserListBySearch(user)
-            userInfoState.postValue(UserInfoState.OnUserInfoAvailable(users))
-        }else if(user != null && users.contains(user)) {
-            userInfoState.postValue(UserInfoState.OnUserIsAlreadyOnList)
-        } else {
-            userInfoState.postValue(UserInfoState.OnUserInfoUnavailable)
+    fun fetchCachedUsers() {
+        viewModelScope.launch {
+            val users = useCase.getUsers()
+            if (users.isNullOrEmpty()) {
+                userInfoState.postValue(UserInfoState.OnEmptyCachedList)
+            } else {
+                userInfoState.postValue(UserInfoState.OnUserInfoAvailable(users))
+            }
         }
     }
 
-    private fun orderUserListBySearch(user: UserModel) {
-        if (users.size < TOTAL_USERS_ON_LIST) {
-            users.add(INDEX_ZERO, user)
-        } else {
-            users.removeLast()
-            users.add(INDEX_ZERO, user)
+    private fun handleUsersAvailability(user: String) {
+        viewModelScope.launch {
+            val users = useCase.getUsers()
+            if (user.findUser(users) != null) {
+                userInfoState.postValue(UserInfoState.OnUserInfoAvailable(users))
+            } else {
+                userInfoState.postValue(UserInfoState.OnUserInfoUnavailable)
+            }
         }
     }
 
-    fun orderUserListByRank(): ArrayList<UserModel> {
-        if(users.isNotEmpty() && users.size <= TOTAL_USERS_ON_LIST) {
-            usersOrderedByRank.clear()
-            usersOrderedByRank.addAll(users.sortedBy { it.leaderboardPosition })
+    private fun String.findUser(users: List<UserInfoModel>) = users.find { it.userName == this }
+
+    fun getListOrderedByRank() {
+        viewModelScope.launch {
+            val listOrderedByRank = useCase.orderUserListByRank()
+            if (listOrderedByRank != null) {
+                userInfoState.postValue(UserInfoState.OnUserInfoAvailable(listOrderedByRank))
+            }
         }
-        return usersOrderedByRank
     }
 }

@@ -41,7 +41,7 @@ class SearchScreenUseCaseTest : BaseTest() {
     fun `when getting user data it should return user data`() {
         coEvery { repository.getUser(any()) } returns getUserResponse()
         runBlocking {
-            val user = useCase.getUser("richardanemam")
+            val user = useCase.getNewUser("richardanemam")
             Assert.assertEquals(getUser(), user)
         }
     }

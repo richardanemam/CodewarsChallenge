@@ -1,20 +1,23 @@
 package com.example.codewarschallenge.domain.usecase
 
 import com.example.codewarschallenge.data.repository.CodeWarsRepository
-import com.example.codewarschallenge.domain.model.UserModel
+import com.example.codewarschallenge.domain.model.UserInfoModel
 import javax.inject.Inject
 
-class SearchScreenUseCase @Inject constructor(
-    private val repository: CodeWarsRepository
-) {
+class SearchScreenUseCase @Inject constructor(private val repository: CodeWarsRepository) {
 
-    suspend fun getUser(username: String): UserModel? {
-        val user = repository.getUser(username)
+    suspend fun getNewUser(username: String) {
+        repository.getUser(username)
+    }
 
-        if(user.isSuccessful) {
-            return user.body()
+    suspend fun orderUserListByRank(): List<UserInfoModel>? {
+        val users = getUsers()
+        if(!users.isNullOrEmpty()) {
+            return users.sortedBy { it.leaderBoardPosition }
         }
-
         return null
     }
+
+    suspend fun getUsers(): List<UserInfoModel> = repository.getAllUsers()
+
 }
