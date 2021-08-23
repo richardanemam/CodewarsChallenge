@@ -23,14 +23,12 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
     fun fetchUserByName(name: String) {
         viewModelScope.launch {
             progressBarState.postValue(ProgressbarState.Show)
-
             if (name.findUser(useCase.getUsers()) != null) {
                 userInfoState.postValue(UserInfoState.OnUserIsAlreadyOnList)
             } else {
                 useCase.getNewUser(name)
                 handleUsersAvailability(name)
             }
-
         }.invokeOnCompletion {
             progressBarState.postValue(ProgressbarState.Hide)
         }

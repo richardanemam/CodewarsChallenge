@@ -2,6 +2,8 @@ package com.example.codewarschallenge.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.codewarschallenge.common.BaseTest
+import com.example.codewarschallenge.data.api.CodeWarsApi
+import com.example.codewarschallenge.data.repository.CacheUserPolicyRepository
 import com.example.codewarschallenge.data.repository.CodeWarsRepository
 import com.example.codewarschallenge.domain.usecase.SearchScreenUseCase
 import io.mockk.coEvery
@@ -23,6 +25,8 @@ class SearchScreenUseCaseTest : BaseTest() {
 
     private lateinit var useCase: SearchScreenUseCase
     private val repository = mockk<CodeWarsRepository>()
+    private val service = mockk<CodeWarsApi>()
+    private val cache = mockk<CacheUserPolicyRepository>()
 
     @ExperimentalCoroutinesApi
     @Before
@@ -38,11 +42,16 @@ class SearchScreenUseCaseTest : BaseTest() {
     }
 
     @Test
-    fun `when getting user data it should return user data`() {
-        coEvery { repository.getUser(any()) } returns getUserResponse()
+    fun `when getting all users it should return all users data`() {
+        coEvery { repository.getAllUsers() } returns getUsersInfo()
+        coEvery { cache.put(getUser()) } returns Unit
+        coEvery { service.getUser(any()) } returns getUserResponse()
+
         runBlocking {
-            val user = useCase.getNewUser("richardanemam")
-            Assert.assertEquals(getUser(), user)
+            Assert.assertEquals(
+                    useCase.getUsers(),
+                    getUsersInfo()
+            )
         }
     }
 }
