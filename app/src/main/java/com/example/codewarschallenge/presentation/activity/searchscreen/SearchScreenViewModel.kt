@@ -23,7 +23,7 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
     fun fetchUserByName(name: String) {
         viewModelScope.launch {
             progressBarState.postValue(ProgressbarState.Show)
-            if (name.findUser(useCase.getUsers()) != null) {
+            if (name.isInfoCached(useCase.getUsers())) {
                 userInfoState.postValue(UserInfoState.OnUserIsAlreadyOnList)
             } else {
                 useCase.getNewUser(name)
@@ -45,19 +45,6 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
         }
     }
 
-    private fun handleUsersAvailability(user: String) {
-        viewModelScope.launch {
-            val users = useCase.getUsers()
-            if (user.findUser(users) != null) {
-                userInfoState.postValue(UserInfoState.OnUserInfoAvailable(users))
-            } else {
-                userInfoState.postValue(UserInfoState.OnUserInfoUnavailable)
-            }
-        }
-    }
-
-    private fun String.findUser(users: List<UserInfoModel>) = users.find { it.userName == this }
-
     fun getListOrderedByRank() {
         viewModelScope.launch {
             val listOrderedByRank = useCase.orderUserListByRank()
@@ -65,5 +52,20 @@ class SearchScreenViewModel @Inject constructor(private val useCase: SearchScree
                 userInfoState.postValue(UserInfoState.OnUserInfoAvailable(listOrderedByRank))
             }
         }
+    }
+
+    private fun handleUsersAvailability(user: String) {
+        viewModelScope.launch {
+            val users = useCase.getUsers()
+            if (user.isInfoCached(users)) {
+                userInfoState.postValue(UserInfoState.OnUserInfoAvailable(users))
+            } else {
+                userInfoState.postValue(UserInfoState.OnUserInfoUnavailable)
+            }
+        }
+    }
+
+    private fun String.isInfoCached(users: List<UserInfoModel>): Boolean {
+        return users.find { it.userName == this } != null
     }
 }

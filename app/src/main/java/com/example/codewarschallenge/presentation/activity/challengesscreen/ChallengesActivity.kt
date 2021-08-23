@@ -123,8 +123,7 @@ class ChallengesActivity : AppCompatActivity(), ChallengeDetailsListener {
 
     private fun setUpToolbar() {
         setSupportActionBar(binding.toolbarSearchScreenId)
-        val actionBar = supportActionBar
-        actionBar?.apply {
+        supportActionBar?.apply {
             setTitle(R.string.challenges_toolbar_title)
             setDisplayHomeAsUpEnabled(true)
         }

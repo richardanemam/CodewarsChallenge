@@ -71,8 +71,7 @@ class AuthoredChallengeDetailsActivity: AppCompatActivity() {
 
     private fun setUpToolbar() {
         setSupportActionBar(binding.toolbarChallengesDetailsScreenId)
-        val actionBar = supportActionBar
-        actionBar?.apply {
+        supportActionBar?.apply {
             setTitle(R.string.authored_challenges_details_toolbar_title)
             setDisplayHomeAsUpEnabled(true)
         }
