@@ -1,9 +1,9 @@
-package com.example.codewarschallenge
+package com.example.codewarschallenge.presentation.searchscreen
 
-import com.example.codewarschallenge.SearchScreenActivityRobot.MEMBER_TITLE
-import com.example.codewarschallenge.SearchScreenActivityRobot.RECENT_SEARCHES
-import com.example.codewarschallenge.SearchScreenActivityRobot.RECENT_SEARCHES_WARNING
-import com.example.codewarschallenge.SearchScreenActivityRobot.SEARCH
+import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.MEMBER_TITLE
+import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.RECENT_SEARCHES
+import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.RECENT_SEARCHES_WARNING
+import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.SEARCH
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Test
 

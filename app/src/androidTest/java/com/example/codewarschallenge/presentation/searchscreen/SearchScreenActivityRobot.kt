@@ -1,17 +1,17 @@
-package com.example.codewarschallenge
+package com.example.codewarschallenge.presentation.searchscreen
 
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.launchActivity
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import com.example.codewarschallenge.SearchScreenActivityRobot.CLIENT_ERROR_RESPONSE_CODE
-import com.example.codewarschallenge.SearchScreenActivityRobot.RESPONSE_BODY
-import com.example.codewarschallenge.SearchScreenActivityRobot.SERVER_PORT
-import com.example.codewarschallenge.SearchScreenActivityRobot.SUCCESSFUL_RESPONSE_CODE
+import com.example.codewarschallenge.R
+import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.CLIENT_ERROR_RESPONSE_CODE
+import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.RESPONSE_BODY
+import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.SERVER_PORT
+import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.SUCCESSFUL_RESPONSE_CODE
 import com.example.codewarschallenge.presentation.activity.searchscreen.SearchScreenActivity
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
