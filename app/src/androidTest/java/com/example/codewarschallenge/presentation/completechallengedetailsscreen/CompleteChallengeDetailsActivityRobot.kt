@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.core.app.launchActivity
+import androidx.test.espresso.ViewInteraction
 import com.example.codewarschallenge.BaseRobotTest
 import com.example.codewarschallenge.presentation.completechallengedetailsscreen.CompleteChallengeDetailsActivityRobot.COMPLETED_AT
 import com.example.codewarschallenge.presentation.completechallengedetailsscreen.CompleteChallengeDetailsActivityRobot.ID
@@ -42,5 +43,5 @@ class CompleteChallengeDetailsActivityPrepare {
 }
 
 class CompleteChallengeDetailsActivityValidate: BaseRobotTest() {
-    fun String.isDisplayed() = matchesTextDisplayed(this)
+    fun String.isDisplayed(): ViewInteraction = matchesTextDisplayed(this)
 }

@@ -88,7 +88,7 @@ class AuthoredChallengeDetailsActivity: AppCompatActivity() {
         binding.tvChallengesDetailsId.text = data.id
         binding.tvChallengesDetailsName.text = data.name
         binding.tvChallengesDetailsDescription.text = data.description
-        binding.tvChallengesDetailsRankName.text = data.rank.toString()
+        binding.tvChallengesDetailsRank.text = data.rank.toString()
         binding.tvChallengesDetailsRankName.text = data.rankName
         bindTags()
         bingLanguages()
