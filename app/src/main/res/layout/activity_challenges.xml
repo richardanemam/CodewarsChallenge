@@ -25,7 +25,6 @@
         android:layout_above="@id/bnv_challenges_menu"
         android:layout_below="@id/appbar_challenges_screen_id"/>
 
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_challenges_menu"
         android:layout_width="match_parent"
