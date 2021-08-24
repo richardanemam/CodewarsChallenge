@@ -4,6 +4,8 @@ import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActiv
 import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.RECENT_SEARCHES
 import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.RECENT_SEARCHES_WARNING
 import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.SEARCH
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Test
 
@@ -13,6 +15,9 @@ class SearchScreenActivityTest {
 
     private fun prepare(func: SearchScreenActivityRobotPrepare.() -> Unit) =
         SearchScreenActivityRobotPrepare(server).apply(func)
+
+    private fun execute(func: SearchScreenActivityRobotExecute.() -> Unit) =
+        SearchScreenActivityRobotExecute().apply(func)
 
     private fun validate(func: SearchScreenActivityRobotValidate.() -> Unit) =
         SearchScreenActivityRobotValidate().apply(func)
@@ -26,23 +31,10 @@ class SearchScreenActivityTest {
             closeServer()
         }
         validate {
-            validateTexts(MEMBER_TITLE)
-            validateTexts(SEARCH)
-            validateTexts(RECENT_SEARCHES)
-            validateTexts(RECENT_SEARCHES_WARNING)
-        }
-    }
-
-    @Test
-    fun whenLauchingActivity_ItShouldValidateSearch() {
-        prepare {
-            setDispatcher()
-            startServer()
-            initActivity()
-            closeServer()
-        }
-        validate {
-            validateSearch()
+            MEMBER_TITLE.isDisplayed()
+            SEARCH.isDisplayed()
+            RECENT_SEARCHES.isDisplayed()
+            //RECENT_SEARCHES_WARNING.isDisplayed()
         }
     }
 }

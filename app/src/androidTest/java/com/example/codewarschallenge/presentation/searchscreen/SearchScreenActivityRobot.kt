@@ -2,11 +2,8 @@ package com.example.codewarschallenge.presentation.searchscreen
 
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.launchActivity
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.typeText
-import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.ViewInteraction
+import com.example.codewarschallenge.BaseRobotTest
 import com.example.codewarschallenge.R
 import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.CLIENT_ERROR_RESPONSE_CODE
 import com.example.codewarschallenge.presentation.searchscreen.SearchScreenActivityRobot.RESPONSE_BODY
@@ -44,7 +41,7 @@ class SearchScreenActivityRobotPrepare(private val server: MockWebServer) {
         server.dispatcher = object : Dispatcher() {
             override fun dispatch(request: RecordedRequest): MockResponse {
                 return when (request.path) {
-                    "user" -> mockSuccessfulResponse()
+                    "/user" -> mockSuccessfulResponse()
                     else -> mockResponseError()
                 }
             }
@@ -61,13 +58,12 @@ class SearchScreenActivityRobotPrepare(private val server: MockWebServer) {
     }
 }
 
-class SearchScreenActivityRobotValidate {
-    fun validateTexts(text: String) {
-        onView(ViewMatchers.withText(text))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-    }
+class SearchScreenActivityRobotExecute: BaseRobotTest() {
+    fun clickSearchView(): ViewInteraction = performClick(R.id.sv_search_screen_search_member)
+    fun typeSearchViewText(): ViewInteraction = performTypeText(R.id.sv_search_screen_search_member, "richardanemam\n")
 
-    fun validateSearch() {
-        onView(withId(R.id.sv_search_screen_search_member)).perform(typeText("richardanemam"))
-    }
+}
+
+class SearchScreenActivityRobotValidate: BaseRobotTest() {
+    fun String.isDisplayed() = matchesTextDisplayed(this)
 }

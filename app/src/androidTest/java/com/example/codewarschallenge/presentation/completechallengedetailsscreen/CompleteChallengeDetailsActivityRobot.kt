@@ -42,5 +42,5 @@ class CompleteChallengeDetailsActivityPrepare {
 }
 
 class CompleteChallengeDetailsActivityValidate: BaseRobotTest() {
-    fun String.isDisplayed() = isTextDisplayed(this)
+    fun String.isDisplayed() = matchesTextDisplayed(this)
 }
