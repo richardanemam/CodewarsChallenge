@@ -61,7 +61,6 @@ class SearchScreenActivityRobotPrepare(private val server: MockWebServer) {
 class SearchScreenActivityRobotExecute: BaseRobotTest() {
     fun clickSearchView(): ViewInteraction = performClick(R.id.sv_search_screen_search_member)
     fun typeSearchViewText(): ViewInteraction = performTypeText(R.id.sv_search_screen_search_member, "richardanemam\n")
-
 }
 
 class SearchScreenActivityRobotValidate: BaseRobotTest() {

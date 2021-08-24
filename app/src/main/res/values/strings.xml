@@ -20,6 +20,7 @@
     <string name="search_screen_item_user_best_language_title">Best Language</string>
     <string name="search_screen_item_user_language_score_title">Best Language Score</string>
     <string name="search_screen_item_show_user_challenges">show challenges</string>
+    <string name="search_screen_item_unknown">unknown</string>
 
     <!-- CHALLENGES SCREEN -->
     <string name="challenges_toolbar_title">Challenges</string>

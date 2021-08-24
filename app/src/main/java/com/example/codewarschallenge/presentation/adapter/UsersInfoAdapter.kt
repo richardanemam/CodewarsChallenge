@@ -32,10 +32,10 @@ class UsersInfoAdapter(private val listener: ShowChallengesListener): RecyclerVi
 
         fun bindViews() {
             val user = users[absoluteAdapterPosition]
-            binding.tvSearchedUsersName.text = user.name
-            binding.tvSearchedUsersRank.text = user.leaderBoardPosition.toString()
-            binding.tvSearchedUsersBestLanguage.text = user.bestLanguage
-            binding.tvSearchedUsersLanguageScore.text = user.bestLanguageScore.toString()
+            user.name?.let { binding.tvSearchedUsersName.text = it }
+            user.leaderBoardPosition?.let { binding.tvSearchedUsersRank.text = it.toString() }
+            user.bestLanguage?.let { binding.tvSearchedUsersBestLanguage.text = it }
+            user.bestLanguageScore?.let { binding.tvSearchedUsersLanguageScore.text = it.toString() }
             onClickShowChallenges(user.userName)
         }
 
