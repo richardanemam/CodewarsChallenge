@@ -18,6 +18,6 @@ class SearchScreenUseCase @Inject constructor(private val repository: CodeWarsRe
         return null
     }
 
-    suspend fun getUsers(): List<UserInfoModel> = repository.getAllUsers()
+    suspend fun getUsers(): List<UserInfoModel> = repository.getAllUsers().asReversed()
 
 }

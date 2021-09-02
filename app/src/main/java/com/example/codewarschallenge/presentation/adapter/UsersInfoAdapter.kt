@@ -3,6 +3,7 @@ package com.example.codewarschallenge.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.codewarschallenge.R
 import com.example.codewarschallenge.databinding.ItemSearchedUsersBinding
 import com.example.codewarschallenge.domain.listener.ShowChallengesListener
 import com.example.codewarschallenge.domain.model.UserInfoModel
@@ -32,7 +33,11 @@ class UsersInfoAdapter(private val listener: ShowChallengesListener): RecyclerVi
 
         fun bindViews() {
             val user = users[absoluteAdapterPosition]
-            user.name?.let { binding.tvSearchedUsersName.text = it }
+
+            user.name?.let {
+                if (it.isNotBlank()) binding.tvSearchedUsersName.text = it
+                else binding.tvSearchedUsersName.text = binding.root.context.getText(R.string.search_screen_item_unknown)
+            }
             user.leaderBoardPosition?.let { binding.tvSearchedUsersRank.text = it.toString() }
             user.bestLanguage?.let { binding.tvSearchedUsersBestLanguage.text = it }
             user.bestLanguageScore?.let { binding.tvSearchedUsersLanguageScore.text = it.toString() }
